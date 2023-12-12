@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SushiRstaurant.Domain.Models;
 
-class FoodSet : Model
+public sealed class FoodSet : Model
 {
     public string Name { get; set; }
     public string Description { get; set; }

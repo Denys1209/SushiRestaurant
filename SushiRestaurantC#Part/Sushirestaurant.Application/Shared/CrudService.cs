@@ -1,9 +1,9 @@
 ﻿using SushiRstaurant.Domain;
 using SushiRstaurant.Domain.Models;
 
-namespace Sushirestaurant.Application.Shared;
+namespace SushiRestaurant.Application.Shared;
 
-public abstract class CrudService<TModel> : ICrudServicecs<TModel> where TModel : Model
+public abstract class CrudService<TModel> : ICrudService<TModel> where TModel : Model
 {
     private readonly ICrudRepository<TModel> _repository;
 

@@ -1,15 +1,15 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Denis_2\\ProjectsForPortfolio\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\Sushirestaurant.Application.csproj": {}
+    "D:\\Denis_2\\ProjectsForPortfolio\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\SushiRestaurant.Application.csproj": {}
   },
   "projects": {
-    "D:\\Denis_2\\ProjectsForPortfolio\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\Sushirestaurant.Application.csproj": {
+    "D:\\Denis_2\\ProjectsForPortfolio\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\SushiRestaurant.Application.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Denis_2\\ProjectsForPortfolio\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\Sushirestaurant.Application.csproj",
-        "projectName": "Sushirestaurant.Application",
-        "projectPath": "D:\\Denis_2\\ProjectsForPortfolio\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\Sushirestaurant.Application.csproj",
+        "projectUniqueName": "D:\\Denis_2\\ProjectsForPortfolio\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\SushiRestaurant.Application.csproj",
+        "projectName": "SushiRestaurant.Application",
+        "projectPath": "D:\\Denis_2\\ProjectsForPortfolio\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\SushiRestaurant.Application.csproj",
         "packagesPath": "C:\\Users\\Intel-PC\\.nuget\\packages\\",
         "outputPath": "D:\\Denis_2\\ProjectsForPortfolio\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\obj\\",
         "projectStyle": "PackageReference",

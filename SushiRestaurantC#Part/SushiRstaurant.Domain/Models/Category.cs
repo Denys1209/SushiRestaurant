@@ -1,7 +1,7 @@
 ﻿
 namespace SushiRstaurant.Domain.Models;
 
-sealed public class Category : Model
+public sealed class Category : Model
 {
     public string Name { get; set; }
 

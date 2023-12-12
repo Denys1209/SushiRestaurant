@@ -1,7 +1,7 @@
 ﻿using SushiRstaurant.Domain.Models;
 using System.Collections;
 
-namespace Sushirestaurant.Application.Shared;
+namespace SushiRestaurant.Application.Shared;
 
 public sealed record PaginatedCollection<TModel>(IReadOnlyCollection<TModel> Models, int Total) : IEnumerable<TModel> where TModel : Model
 {

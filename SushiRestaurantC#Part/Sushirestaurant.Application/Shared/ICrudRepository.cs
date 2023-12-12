@@ -1,7 +1,7 @@
 ﻿using SushiRstaurant.Domain;
 using SushiRstaurant.Domain.Models;
 
-namespace Sushirestaurant.Application.Shared;
+namespace SushiRestaurant.Application.Shared;
 
 public interface ICrudRepository<TModel> where TModel : Model
 {

@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace SushiRstaurant.Domain.Models;
 
 
-public class Dish : Model
+public sealed class Dish : Model
 {
     public string Name { get; set; }
     public string Description { get; set; }

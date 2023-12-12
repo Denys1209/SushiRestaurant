@@ -5,13 +5,13 @@ VisualStudioVersion = 17.7.34031.279
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "MVC.SushiRestaurant", "MVC.SushiRestaurant\MVC.SushiRestaurant.csproj", "{E2DCA331-6921-44D3-9D37-759A7F3658D5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sushirestaurant.Application", "Sushirestaurant.Application\Sushirestaurant.Application.csproj", "{0BB2C2BB-7AC4-41C9-85F4-1068296720BC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SushiRestaurant.Application", "Sushirestaurant.Application\SushiRestaurant.Application.csproj", "{0BB2C2BB-7AC4-41C9-85F4-1068296720BC}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SushiRstaurant.Domain", "SushiRstaurant.Domain\SushiRstaurant.Domain.csproj", "{476BC835-5FC5-4E11-A299-80BAE9C19902}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SushiRestaurant.EfPersistence", "SushiRestaurant.EfPersistence\SushiRestaurant.EfPersistence.csproj", "{0ED5201D-1859-4580-9720-B05190C4EC0E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SushiRestaurant.EfPersistence", "SushiRestaurant.EfPersistence\SushiRestaurant.EfPersistence.csproj", "{0ED5201D-1859-4580-9720-B05190C4EC0E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SushiRestaurant.Constants", "SushiRestaurant.Constants\SushiRestaurant.Constants.csproj", "{7D7C90BA-BD6F-4B4F-AD00-8EA13FCD8F24}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SushiRestaurant.Constants", "SushiRestaurant.Constants\SushiRestaurant.Constants.csproj", "{7D7C90BA-BD6F-4B4F-AD00-8EA13FCD8F24}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
