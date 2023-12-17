@@ -24,5 +24,21 @@ public sealed class Dish : Model
         Category = category;
     }
 
+    public override bool IsMatch(string searchTerm)
+    {
+        throw new NotImplementedException();
+    }
 
+    public override object? SortBy(string sortColumn)
+    {
+        return sortColumn switch
+        {
+            Constants.NameStringDish => Name,
+            Constants.DescriptionStringDish => Description,
+            Constants.ImageURLStringDish => ImageURL,
+            Constants.CostStringDish => Cost,
+            Constants.IdStringName => Id,
+            _ => Id
+        };
+    }
 }

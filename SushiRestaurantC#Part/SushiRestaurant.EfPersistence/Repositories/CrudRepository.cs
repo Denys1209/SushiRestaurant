@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using SushiRestaurant.Constants;
+using Microsoft.EntityFrameworkCore;
 using SushiRestaurant.Application.Shared;
 using SushiRestaurant.EfPersistence.Data;
 using SushiRstaurant.Domain;
@@ -57,7 +58,7 @@ public abstract class CrudRepository<TModel> : ICrudRepository<TModel> where TMo
             query = Filter(query, dto.SearchTerm);
         var totalItems = await query.CountAsync(cancellationToken);
 
-        var orderBy = string.IsNullOrWhiteSpace(dto.SortColumn) ? "Id" : dto.SortColumn;
+        var orderBy = string.IsNullOrWhiteSpace(dto.SortColumn) ? Constants.Constants.IdStringName : dto.SortColumn;
 
         query = Sort(query, orderBy, dto.SortOrder == SortOrder.Asc);
 

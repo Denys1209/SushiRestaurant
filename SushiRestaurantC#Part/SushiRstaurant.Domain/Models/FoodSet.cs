@@ -26,4 +26,21 @@ public sealed class FoodSet : Model
         Dishes = new List<Dish>();
     }
 
+    public override bool IsMatch(string searchTerm)
+    {
+        throw new NotImplementedException();
+    }
+
+    public override object? SortBy(string sortColumn)
+    {
+        return sortColumn switch
+        {
+            Constants.NameStringFoodSet => Name,
+            Constants.DescriptionStringFoodSet => Description,
+            Constants.ImageURLStringFoodSet => ImageURL,
+            Constants.CostStringFoodSet => Cost,
+            Constants.IdStringName => Id,
+            _ => Id
+        };
+    }
 }
