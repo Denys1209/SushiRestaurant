@@ -13,6 +13,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SushiRestaurant.EfPersisten
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SushiRestaurant.Constants", "SushiRestaurant.Constants\SushiRestaurant.Constants.csproj", "{7D7C90BA-BD6F-4B4F-AD00-8EA13FCD8F24}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SushiRestaurant.WebApi", "SushiRestaurant.WebApi\SushiRestaurant.WebApi.csproj", "{983B8B3C-1B04-46DD-8B8D-6BA796983085}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -39,6 +41,10 @@ Global
 		{7D7C90BA-BD6F-4B4F-AD00-8EA13FCD8F24}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7D7C90BA-BD6F-4B4F-AD00-8EA13FCD8F24}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7D7C90BA-BD6F-4B4F-AD00-8EA13FCD8F24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{983B8B3C-1B04-46DD-8B8D-6BA796983085}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{983B8B3C-1B04-46DD-8B8D-6BA796983085}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{983B8B3C-1B04-46DD-8B8D-6BA796983085}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{983B8B3C-1B04-46DD-8B8D-6BA796983085}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
