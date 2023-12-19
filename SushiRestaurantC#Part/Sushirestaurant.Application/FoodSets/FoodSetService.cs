@@ -6,7 +6,7 @@ namespace SushiRestaurant.Application.FoodSets;
 
 public class FoodSetService : CrudService<FoodSet>,IFoodSetService
 {
-    public FoodSetService(IFoodRepository foodSetRepository) : base(foodSetRepository)
+    public FoodSetService(IFoodSetRepository foodSetRepository) : base(foodSetRepository)
     {
     }
 }
