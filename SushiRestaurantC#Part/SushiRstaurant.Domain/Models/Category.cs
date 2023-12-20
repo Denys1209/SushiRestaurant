@@ -5,13 +5,15 @@ namespace SushiRstaurant.Domain.Models;
 public sealed class Category : Model
 {
 
-    public string Name { get; set; }
+    public required string Name { get; set; }
 
 
     public Category(string name) 
     {
         Name = name;
     }
+
+    public Category() { }
 
 
     public override string ToString()
