@@ -6,7 +6,7 @@ namespace SushiRestaurant.WebApi.Dtos.FoodSets;
 
 public class UpdateFoodSetDto
 {
-
+    public int Id { get; set; }
 
     [Required(ErrorMessage = "Name is required")]
     [StringLength(50, MinimumLength = 3)]
