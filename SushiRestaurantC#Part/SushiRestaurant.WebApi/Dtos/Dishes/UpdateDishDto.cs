@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace SushiRestaurant.WebApi.Dtos.Dishes;
 
-public class UpdateCategoryDto
+public class UpdateDishDto
 {
     public int Id { get; set; }
 

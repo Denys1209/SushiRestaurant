@@ -39,7 +39,10 @@ public class CategoriesController : Controller
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
     public async Task<IActionResult> Post([FromBody] CreateCategoryDto dto, CancellationToken cancellationToken)
     {
-        var category = new Category { Name = dto.Name };
+        var category = new Category 
+        {
+            Name = dto.Name
+        };
         var id = await _categoryService.CreateAsync(category, cancellationToken);
         return CreatedAtAction(nameof(Get), new { id }, id);
     }
