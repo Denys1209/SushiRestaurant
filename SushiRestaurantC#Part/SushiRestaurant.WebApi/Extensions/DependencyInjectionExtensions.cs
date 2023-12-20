@@ -21,6 +21,6 @@ public static class DependencyInjectionExtensions
 
         services.AddTransient<ICategoryService, CategoryService>();
         services.AddTransient<IDishService, DishService>();
-        services.AddTransient<IFoodSetService, IFoodSetService>();
+        services.AddTransient<IFoodSetService, FoodSetService>();
     }
 }
