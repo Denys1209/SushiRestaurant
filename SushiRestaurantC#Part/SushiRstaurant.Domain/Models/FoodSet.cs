@@ -5,16 +5,16 @@ namespace SushiRstaurant.Domain.Models;
 
 public sealed class FoodSet : Model
 {
-    public string Name { get; set; }
-    public string Description { get; set; }
-    public string ImageURL { get; set; }
+    public required string Name { get; set; }
+    public required string Description { get; set; }
+    public required string ImageURL { get; set; }
 
-    public ICollection<Dish> Dishes { get; set; }
+    public required ICollection<Dish> Dishes { get; set; }
 
-    public Category Category { get; set; }
+    public required Category Category { get; set; }
     
     [Column(TypeName = "money")]
-    public decimal Cost { get; set; }
+    public required decimal Cost { get; set; }
 
     public FoodSet(string name, string description, decimal cost, Category category,  string imageUrl = Constants.DefaultImageForFood) 
     {
@@ -25,6 +25,8 @@ public sealed class FoodSet : Model
         ImageURL = imageUrl;
         Dishes = new List<Dish>();
     }
+
+    public FoodSet() { }
 
     public override bool IsMatch(string searchTerm)
     {

@@ -4,7 +4,7 @@ using SushiRstaurant.Domain.Models;
 
 namespace SushiRestaurant.EfPersistence.Repositories;
 
-public sealed class FoodSetRepository : CrudRepository<FoodSet>, IFoodRepository
+public sealed class FoodSetRepository : CrudRepository<FoodSet>, IFoodSetRepository
 {
     public FoodSetRepository(SushiRestaurantDbContext dbContext) : base(dbContext) { }
 

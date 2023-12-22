@@ -1,12 +1,18 @@
-﻿using SushiRestaurant.Application.Dishes;
-using SushiRestaurant.Application.Shared;
+﻿using SushiRestaurant.Application.Shared;
+using SushiRstaurant.Domain;
 using SushiRstaurant.Domain.Models;
 
 namespace SushiRestaurant.Application.FoodSets;
 
-public class FoodSetService : CrudService<FoodSet>,IFoodSetService
+public sealed class FoodSetService : CrudService<FoodSet>, IFoodSetService
 {
-    public FoodSetService(IFoodRepository foodSetRepository) : base(foodSetRepository)
+    public FoodSetService(IFoodSetRepository foodSetRepository) : base(foodSetRepository)
     {
+
+    }
+
+    public async PaginatedCollection<Dish> GetAllByCategory(FilterPaginationDto dto, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
     }
 }

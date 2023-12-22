@@ -3,6 +3,6 @@ using SushiRstaurant.Domain.Models;
 
 namespace SushiRestaurant.Application.FoodSets;
 
-public interface IFoodRepository : ICrudRepository<FoodSet>
+public interface IFoodSetRepository : ICrudRepository<FoodSet>
 {
 }
