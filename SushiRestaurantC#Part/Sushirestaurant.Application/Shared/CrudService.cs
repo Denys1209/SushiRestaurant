@@ -5,7 +5,7 @@ namespace SushiRestaurant.Application.Shared;
 
 public abstract class CrudService<TModel> : ICrudService<TModel> where TModel : Model
 {
-    private readonly ICrudRepository<TModel> _repository;
+    protected readonly ICrudRepository<TModel> _repository;
 
     public CrudService(ICrudRepository<TModel> repository)
     {
