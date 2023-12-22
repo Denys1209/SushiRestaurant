@@ -1,20 +1,20 @@
 {
   "version": 2,
-  "dgSpecHash": "jCpJFGFCY84T5dBUBJi/kLWFu08w/otYiHA6NjVcjuFY75928xJA9yqZI33kwJoK1egOKubz8N3hZUUWhhuoDg==",
+  "dgSpecHash": "ZMOJGOqLzcumbnOWaLu9AXFkkaQoYRhrbRN3jLIo+w71LaHZ84SamvyAPMQw9ewKbSXIUsSNgxAanL3AGgoEcg==",
   "success": true,
-  "projectFilePath": "D:\\Denis_2\\ProjectsForPortfolio\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.EfPersistence\\SushiRestaurant.EfPersistence.csproj",
+  "projectFilePath": "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.EfPersistence\\SushiRestaurant.EfPersistence.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\Intel-PC\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0\\microsoft.entityframeworkcore.8.0.0.nupkg.sha512",
-    "C:\\Users\\Intel-PC\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.0\\microsoft.entityframeworkcore.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\Intel-PC\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.0\\microsoft.entityframeworkcore.analyzers.8.0.0.nupkg.sha512",
-    "C:\\Users\\Intel-PC\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\Intel-PC\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.0\\microsoft.extensions.caching.memory.8.0.0.nupkg.sha512",
-    "C:\\Users\\Intel-PC\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
-    "C:\\Users\\Intel-PC\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\Intel-PC\\.nuget\\packages\\microsoft.extensions.logging\\8.0.0\\microsoft.extensions.logging.8.0.0.nupkg.sha512",
-    "C:\\Users\\Intel-PC\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
-    "C:\\Users\\Intel-PC\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
-    "C:\\Users\\Intel-PC\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512"
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0\\microsoft.entityframeworkcore.8.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.0\\microsoft.entityframeworkcore.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.0\\microsoft.entityframeworkcore.analyzers.8.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.caching.abstractions\\8.0.0\\microsoft.extensions.caching.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.caching.memory\\8.0.0\\microsoft.extensions.caching.memory.8.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\8.0.0\\microsoft.extensions.dependencyinjection.8.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\8.0.0\\microsoft.extensions.dependencyinjection.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.logging\\8.0.0\\microsoft.extensions.logging.8.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\8.0.0\\microsoft.extensions.logging.abstractions.8.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.options\\8.0.0\\microsoft.extensions.options.8.0.0.nupkg.sha512",
+    "C:\\Users\\PC\\.nuget\\packages\\microsoft.extensions.primitives\\8.0.0\\microsoft.extensions.primitives.8.0.0.nupkg.sha512"
   ],
   "logs": []
 }
