@@ -12,6 +12,11 @@ public sealed class DishRepository : CrudRepository<Dish>, IDishRepository
 
     }
 
+    public IReadOnlyCollection<Dish> GetAllDishesByCategory(string category, CancellationToken cancellationToken)
+    {
+        return DbContext.Set<Dish>().Where((x) => x.Category.Name == category).ToArray();
+    }
+
     protected override IQueryable<Dish> Filter(IQueryable<Dish> query, string filter)
     {
         return query.Where(m => m.Name.Contains(filter));
@@ -28,6 +33,7 @@ public sealed class DishRepository : CrudRepository<Dish>, IDishRepository
             _ => isAscending ? query.OrderBy(m => m.Id) : query.OrderByDescending(m => m.Id)
         };
     }
+
 
     protected override void Update(Dish model, Dish entity)
     {

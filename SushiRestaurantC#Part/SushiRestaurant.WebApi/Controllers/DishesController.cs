@@ -33,6 +33,15 @@ public class DishesController : Controller
         return Ok(dish);
     }
 
+    [HttpGet("{categoryName}")]
+    public async Task<IActionResult> Get([FromRoute] string categoryName, CancellationToken cancellationToken)
+    {
+        var dish = _dishService.GetAllDishesByCategory(categoryName, cancellationToken);
+        if (dish is null)
+            return NotFound();
+
+        return Ok(dish);
+    }
 
 
 

@@ -9,4 +9,9 @@ public class DishService : CrudService<Dish>, IDishService
     public DishService(IDishRepository dishRepository) : base(dishRepository)
     {
     }
+
+    public IReadOnlyCollection<Dish> GetAllDishesByCategory(string category, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
 }
