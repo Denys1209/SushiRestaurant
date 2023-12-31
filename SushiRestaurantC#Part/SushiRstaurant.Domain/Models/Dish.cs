@@ -10,7 +10,11 @@ public sealed class Dish : Model
     public required string Description { get; set; }
     public required string ImageURL { get; set; }
 
-    public required Category Category { get; set; }
+    public ICollection<DishFoodSet> DishFoodSets { get; set; }
+
+
+    [ForeignKey("CategoryId")]
+    public Category Category { get; set; }
 
     [Column(TypeName = "money")]
     public required decimal Cost { get; set; }
@@ -22,9 +26,12 @@ public sealed class Dish : Model
         Cost = cost;
         ImageURL = imageUrl;
         Category = category;
+        DishFoodSets = new List<DishFoodSet>();
     }
 
-    public Dish() { }
+    public Dish() {
+        DishFoodSets = new List<DishFoodSet>();
+    }
 
     public override bool IsMatch(string searchTerm)
     {

@@ -12,6 +12,20 @@ public sealed class DishRepository : CrudRepository<Dish>, IDishRepository
 
     }
 
+    public async Task<int> AddDishAsync(Dish dish, CancellationToken cancellationToken)
+    {
+        var category = await DbContext.Categories.FindAsync(dish.Category.Id);
+        if (category == null)
+        {
+            throw new Exception($"Category with id {dish.Category.Id} does not exist.");
+        }
+
+        dish.Category = category;
+        await DbContext.Dishes.AddAsync(dish, cancellationToken);
+        await DbContext.SaveChangesAsync(cancellationToken);
+        return dish.Id;
+    }
+
     public IReadOnlyCollection<Dish> GetAllDishesByCategory(string category, CancellationToken cancellationToken)
     {
         return DbContext.Set<Dish>().Where((x) => x.Category.Name == category).ToArray();

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SushiRstaurant.Domain")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+140c07fb08e99a3f0f3bc76ce2e59b9b9823e9d0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9044493aa8682ace71d65110d8bbb72e4504eef2")]
 [assembly: System.Reflection.AssemblyProductAttribute("SushiRstaurant.Domain")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SushiRstaurant.Domain")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

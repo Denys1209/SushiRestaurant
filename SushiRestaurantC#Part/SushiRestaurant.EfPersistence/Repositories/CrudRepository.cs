@@ -17,6 +17,10 @@ public abstract class CrudRepository<TModel> : ICrudRepository<TModel> where TMo
     }
     public async Task<int> AddAsync(TModel model, CancellationToken cancellationToken)
     {
+        //if (model.Id != default(int))
+        //{
+        //    throw new InvalidOperationException("Cannot insert explicit value for identity column in table 'Categories' when IDENTITY_INSERT is set to OFF.");
+        //}
         await DbContext.Set<TModel>().AddAsync(model, cancellationToken);
         await DbContext.SaveChangesAsync(cancellationToken);
         return model.Id;

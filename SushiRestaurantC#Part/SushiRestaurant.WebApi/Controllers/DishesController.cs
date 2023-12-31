@@ -3,30 +3,33 @@ using SushiRestaurant.WebApi.Filters.Validation;
 using SushiRstaurant.Domain.Models;
 using SushiRstaurant.Domain;
 using SushiRestaurant.Application.Dishes;
-using SushiRestaurant.WebApi.Dtos.Dishes;
+using AutoMapper;
+using SushiRestaurant.WebApi.Dtos;
 
 namespace SushiRestaurant.WebApi.Controllers;
 
 public class DishesController : Controller
 {
     private readonly IDishService _dishService;
+    private readonly IMapper _mapper;
 
-    public DishesController(IDishService dishService)
+    public DishesController(IDishService dishService, IMapper mapper)
     {
         _dishService = dishService;
+        _mapper = mapper;
     }
 
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] FilterPaginationDto paginationDto, CancellationToken cancellationToken)
     {
-        var categories = await _dishService.GetAllAsync(paginationDto, cancellationToken);
-        return Ok(categories);
+        var dishes = _mapper.Map<List<DishDto>>(await _dishService.GetAllAsync(paginationDto, cancellationToken));
+        return Ok(dishes);
     }
 
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get([FromRoute] int id, CancellationToken cancellationToken)
     {
-        var dish = await _dishService.GetAsync(id, cancellationToken);
+        var dish = _mapper.Map<DishDto>(await _dishService.GetAsync(id, cancellationToken));
         if (dish is null)
             return NotFound();
 
@@ -36,7 +39,7 @@ public class DishesController : Controller
     [HttpGet("{categoryName}")]
     public async Task<IActionResult> Get([FromRoute] string categoryName, CancellationToken cancellationToken)
     {
-        var dish = _dishService.GetAllDishesByCategory(categoryName, cancellationToken);
+        var dish = _mapper.Map<List<DishDto>>(_dishService.GetAllDishesByCategory(categoryName, cancellationToken));
         if (dish is null)
             return NotFound();
 
@@ -49,32 +52,19 @@ public class DishesController : Controller
     [ValidationFilter]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Post([FromBody] CreateDishDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Post([FromBody] DishDto dto, CancellationToken cancellationToken)
     {
-        var dish = new Dish
-        {
-            Category = dto.Category,
-            Cost = dto.Cost,
-            Description = dto.Description,
-            ImageURL = dto.ImageURL,
-            Name = dto.Name
-        };
+
+        var dish = _mapper.Map<Dish>(dto);
         var id = await _dishService.CreateAsync(dish, cancellationToken);
         return CreatedAtAction(nameof(Get), new { id }, id);
     }
 
     [HttpPut]
-    public async Task<IActionResult> Put([FromBody] UpdateDishDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Put([FromBody] DishDto dto, CancellationToken cancellationToken)
     {
-        var dish = new Dish
-        {
-            Id = dto.Id,
-            Category = dto.Category,
-            Cost = dto.Cost,
-            Description = dto.Description,
-            ImageURL = dto.ImageURL,
-            Name = dto.Name
-        };
+
+        var dish = _mapper.Map<Dish>(dto);
         await _dishService.UpdateAsync(dish, cancellationToken);
         return NoContent();
     }
