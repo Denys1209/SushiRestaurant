@@ -12,6 +12,25 @@ public sealed class DishRepository : CrudRepository<Dish>, IDishRepository
 
     }
 
+    public async Task<int> AddDishAsync(Dish dish, CancellationToken cancellationToken)
+    {
+        var category = await DbContext.Categories.FindAsync(dish.Category.Id);
+        if (category == null)
+        {
+            throw new Exception($"Category with id {dish.Category.Id} does not exist.");
+        }
+
+        dish.Category = category;
+        await DbContext.Dishes.AddAsync(dish, cancellationToken);
+        await DbContext.SaveChangesAsync(cancellationToken);
+        return dish.Id;
+    }
+
+    public IReadOnlyCollection<Dish> GetAllDishesByCategory(string category, CancellationToken cancellationToken)
+    {
+        return DbContext.Set<Dish>().Where((x) => x.Category.Name == category).ToArray();
+    }
+
     protected override IQueryable<Dish> Filter(IQueryable<Dish> query, string filter)
     {
         return query.Where(m => m.Name.Contains(filter));
@@ -28,6 +47,7 @@ public sealed class DishRepository : CrudRepository<Dish>, IDishRepository
             _ => isAscending ? query.OrderBy(m => m.Id) : query.OrderByDescending(m => m.Id)
         };
     }
+
 
     protected override void Update(Dish model, Dish entity)
     {

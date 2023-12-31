@@ -11,8 +11,5 @@ public sealed class FoodSetService : CrudService<FoodSet>, IFoodSetService
 
     }
 
-    public async PaginatedCollection<Dish> GetAllByCategory(FilterPaginationDto dto, CancellationToken cancellationToken)
-    {
-        throw new NotImplementedException();
-    }
+   
 }

@@ -6,5 +6,6 @@ namespace SushiRestaurant.Application.Dishes;
 
 public interface IDishService : ICrudService<Dish>
 {
-  
+    IReadOnlyCollection<Dish> GetAllDishesByCategory(string category, CancellationToken cancellationToken);
+
 }

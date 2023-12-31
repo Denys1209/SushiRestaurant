@@ -15,6 +15,7 @@ public static class DependencyInjectionExtensions
         services.AddDbContext<SushiRestaurantDbContext>(options =>
             options.UseSqlServer(connectionString, x => x.MigrationsAssembly("SushiRestaurant.EfPersistence")));
 
+
         services.AddTransient<ICategoryRepository, CategoryRepository>();
         services.AddTransient<IDishRepository, DishRepository>();
         services.AddTransient<IFoodSetRepository, FoodSetRepository>();
