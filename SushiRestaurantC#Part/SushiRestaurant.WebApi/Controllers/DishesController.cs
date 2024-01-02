@@ -5,17 +5,20 @@ using SushiRstaurant.Domain;
 using SushiRestaurant.Application.Dishes;
 using AutoMapper;
 using SushiRestaurant.WebApi.Dtos;
+using SushiRestaurant.Application.Categories;
 
 namespace SushiRestaurant.WebApi.Controllers;
 
 public class DishesController : Controller
 {
     private readonly IDishService _dishService;
+    private readonly ICategoryService _categoryService;
     private readonly IMapper _mapper;
 
-    public DishesController(IDishService dishService, IMapper mapper)
+    public DishesController(IDishService dishService, ICategoryService categoryService, IMapper mapper)
     {
         _dishService = dishService;
+        _categoryService = categoryService;
         _mapper = mapper;
     }
 
@@ -52,10 +55,17 @@ public class DishesController : Controller
     [ValidationFilter]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Post([FromBody] DishDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Post([FromQuery] int categoryId, [FromBody] DishDto dto, CancellationToken cancellationToken)
     {
 
         var dish = _mapper.Map<Dish>(dto);
+        Category? category = await _categoryService.GetAsync(categoryId, cancellationToken);
+        if (category is null) 
+        {
+            ModelState.AddModelError("", $"category with the {categoryId} id deosn't exist");
+            return StatusCode(422, ModelState);
+        }
+        dish.Category = category;
         var id = await _dishService.CreateAsync(dish, cancellationToken);
         return CreatedAtAction(nameof(Get), new { id }, id);
     }

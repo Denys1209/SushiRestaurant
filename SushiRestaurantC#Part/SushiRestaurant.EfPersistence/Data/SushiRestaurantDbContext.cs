@@ -24,11 +24,11 @@ public class SushiRestaurantDbContext : DbContext
         modelBuilder.Entity<DishFoodSet>()
                   .HasOne(p => p.FoodSet)
                   .WithMany(pc => pc.DishFoodSets)
-                  .HasForeignKey(p => p.FoodSetId);
+                  .HasForeignKey(p => p.FoodSetId).OnDelete(DeleteBehavior.Restrict);
         modelBuilder.Entity<DishFoodSet>()
                 .HasOne(p => p.Dish)
                 .WithMany(pc => pc.DishFoodSets)
-                .HasForeignKey(c => c.DishId);
+                .HasForeignKey(c => c.DishId).OnDelete(DeleteBehavior.Restrict);
 
     }
 }
