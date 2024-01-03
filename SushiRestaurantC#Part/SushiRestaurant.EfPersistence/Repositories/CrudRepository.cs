@@ -71,6 +71,11 @@ public abstract class CrudRepository<TModel> : ICrudRepository<TModel> where TMo
         return new PaginatedCollection<TModel>(models, totalItems);
     }
 
+    public async Task<IReadOnlyCollection<TModel>> GetAllAsync(CancellationToken cancellationToken) 
+    {
+        return await DbContext.Set<TModel>().ToArrayAsync(cancellationToken);
+    }
+
     public async Task<IReadOnlyCollection<TModel?>> GetAllModelsByIdsAsync(List<int> ids, CancellationToken cancellationToken)
     {
         return await DbContext.Set<TModel>().Where(m => ids.Contains(m.Id)).ToArrayAsync(cancellationToken);

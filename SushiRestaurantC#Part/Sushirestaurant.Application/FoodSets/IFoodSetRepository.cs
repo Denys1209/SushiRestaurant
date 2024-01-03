@@ -5,4 +5,5 @@ namespace SushiRestaurant.Application.FoodSets;
 
 public interface IFoodSetRepository : ICrudRepository<FoodSet>
 {
+
 }

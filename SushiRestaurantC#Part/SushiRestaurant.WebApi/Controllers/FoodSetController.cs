@@ -5,6 +5,9 @@ using SushiRstaurant.Domain;
 using SushiRestaurant.Application.FoodSets;
 using AutoMapper;
 using SushiRestaurant.WebApi.Dtos;
+using SushiRestaurant.Application.Dishes;
+using SushiRestaurant.Application.DIshesFoodSets;
+using SushiRestaurant.Application.Categories;
 
 namespace SushiRestaurant.WebApi.Controllers;
 
@@ -12,11 +15,17 @@ namespace SushiRestaurant.WebApi.Controllers;
 public class FoodSetController : Controller
 {
     private readonly IFoodSetService _foodSetService;
+    private readonly IDishService _dishService;
+    private readonly IDishFoodSetService _dishesFoodSetsService;
+    private readonly ICategoryService _categoryService;
     private readonly IMapper _mapper;
 
-    public FoodSetController(IFoodSetService foodSetService, IMapper mapper)
+    public FoodSetController(IFoodSetService foodSetService, IDishService dishService, ICategoryService categoryService, IDishFoodSetService dishFoodSetService, IMapper mapper)
     {
         _foodSetService = foodSetService;
+        _dishService = dishService;
+        _categoryService = categoryService;
+        _dishesFoodSetsService = dishFoodSetService;
         _mapper = mapper;
     }
 
@@ -24,7 +33,7 @@ public class FoodSetController : Controller
     public async Task<IActionResult> Get([FromQuery] FilterPaginationDto paginationDto, CancellationToken cancellationToken)
     {
         var categories = await _foodSetService.GetAllAsync(paginationDto, cancellationToken);
-        return Ok(_mapper.Map<IEnumerable<CategoryDto>>(categories));
+        return Ok(_mapper.Map<IEnumerable<FoodSetDto>>(categories));
     }
 
     [HttpGet("{id:int}")]
@@ -41,10 +50,37 @@ public class FoodSetController : Controller
     [ValidationFilter]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Post([FromBody] FoodSetDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Post([FromQuery] int categoryId, [FromQuery] List<int> dishesId, [FromBody] FoodSetDto dto, CancellationToken cancellationToken)
     {
         var foodSet = _mapper.Map<FoodSet>(dto);
+        var category = await _categoryService.GetAsync(categoryId, cancellationToken);
+        if (category is null)
+        {
+            ModelState.AddModelError("", $"Category with {categoryId} id doesn't exist");
+            return StatusCode(422, ModelState);
+        }
+        foodSet.Category = category;
+        var dishes = (await _dishService.GetAllModelsByIdsAsync(dishesId, cancellationToken)).ToArray();
+        for (var i = 0; i < dishesId.Count; ++i)
+        {
+            if (dishes[i] is null)
+            {
+                ModelState.AddModelError("", $"Dish with {dishesId[i]} doesn't exist");
+                return StatusCode(422, ModelState);
+            }
+        }
         var id = await _foodSetService.CreateAsync(foodSet, cancellationToken);
+        var createdFoodSet = await _foodSetService.GetAsync(id, cancellationToken);
+        if (createdFoodSet is null) 
+        {
+            ModelState.AddModelError("", $"FoodSet wasn't created");
+            return StatusCode(422, ModelState);
+        }
+        foreach (var item in dishes)
+        {
+            await _dishesFoodSetsService.CreateAsync(new DishFoodSet { Dish = item!, FoodSet = createdFoodSet!, }, cancellationToken);
+        }
+
         return CreatedAtAction(nameof(Get), new { id }, id);
     }
 

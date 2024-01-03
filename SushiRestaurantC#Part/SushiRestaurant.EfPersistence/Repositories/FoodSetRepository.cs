@@ -1,4 +1,5 @@
-﻿using SushiRestaurant.Application.FoodSets;
+﻿using Microsoft.EntityFrameworkCore;
+using SushiRestaurant.Application.FoodSets;
 using SushiRestaurant.EfPersistence.Data;
 using SushiRstaurant.Domain.Models;
 
@@ -32,4 +33,7 @@ public sealed class FoodSetRepository : CrudRepository<FoodSet>, IFoodSetReposit
         entity.Cost = model.Cost;
         entity.Description = model.Description;
     }
+
+   
+
 }
