@@ -4,10 +4,13 @@ using SushiRstaurant.Domain.Models;
 using SushiRstaurant.Domain;
 using SushiRestaurant.Application.FoodSets;
 using AutoMapper;
-using SushiRestaurant.WebApi.Dtos;
 using SushiRestaurant.Application.Dishes;
 using SushiRestaurant.Application.DIshesFoodSets;
 using SushiRestaurant.Application.Categories;
+using SushiRestaurant.WebApi.Dtos.FoodSet;
+using SushiRestaurant.WebApi.Dtos.FoodSets;
+using System.Collections.Generic;
+using SushiRestaurant.WebApi.Dtos.Dish;
 
 namespace SushiRestaurant.WebApi.Controllers;
 
@@ -32,25 +35,30 @@ public class FoodSetController : Controller
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] FilterPaginationDto paginationDto, CancellationToken cancellationToken)
     {
-        var categories = await _foodSetService.GetAllAsync(paginationDto, cancellationToken);
-        return Ok(_mapper.Map<IEnumerable<FoodSetDto>>(categories));
+        var foodSets = _mapper.Map<List<GetFoodSetDto>>(await _foodSetService.GetAllAsync(paginationDto, cancellationToken));
+        foreach (var foodSet in foodSets)
+        {
+            foodSet.Dishes = _mapper.Map<List<GetDishDto>>(await _dishService.GetAllDishesInFoodSetIdAsync(foodSet.Id, cancellationToken));
+        }
+
+        return Ok(foodSets);
     }
 
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get([FromRoute] int id, CancellationToken cancellationToken)
     {
-        var foodSet = await _foodSetService.GetAsync(id, cancellationToken);
+        var foodSet = _mapper.Map<GetFoodSetDto>(await _foodSetService.GetAsync(id, cancellationToken));
         if (foodSet is null)
             return NotFound();
-
-        return Ok(_mapper.Map<FoodSetDto>(foodSet));
+        foodSet.Dishes = _mapper.Map<List<GetDishDto>>(await _dishService.GetAllDishesInFoodSetIdAsync(foodSet.Id, cancellationToken));
+        return Ok(_mapper.Map<GetFoodSetDto>(foodSet));
     }
 
     [HttpPost]
     [ValidationFilter]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Post([FromQuery] int categoryId, [FromQuery] List<int> dishesId, [FromBody] FoodSetDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Post([FromQuery] int categoryId, [FromQuery] List<int> dishesId, [FromBody] CreateFoodSetDto dto, CancellationToken cancellationToken)
     {
         var foodSet = _mapper.Map<FoodSet>(dto);
         var category = await _categoryService.GetAsync(categoryId, cancellationToken);
@@ -71,7 +79,7 @@ public class FoodSetController : Controller
         }
         var id = await _foodSetService.CreateAsync(foodSet, cancellationToken);
         var createdFoodSet = await _foodSetService.GetAsync(id, cancellationToken);
-        if (createdFoodSet is null) 
+        if (createdFoodSet is null)
         {
             ModelState.AddModelError("", $"FoodSet wasn't created");
             return StatusCode(422, ModelState);
@@ -85,10 +93,36 @@ public class FoodSetController : Controller
     }
 
     [HttpPut]
-    public async Task<IActionResult> Put([FromBody] FoodSetDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Put([FromQuery] int categoryId, [FromQuery] List<int> dishesId, [FromBody] UpdateFoodSetDto dto, CancellationToken cancellationToken)
     {
         var foodSet = _mapper.Map<FoodSet>(dto);
+        var category = await _categoryService.GetAsync(categoryId, cancellationToken);
+        if (category is null)
+        {
+            ModelState.AddModelError("", $"Category with {categoryId} id doesn't exist");
+            return StatusCode(422, ModelState);
+        }
+        foodSet.Category = category;
+        var dishes = (await _dishService.GetAllModelsByIdsAsync(dishesId, cancellationToken)).ToArray();
+        for (var i = 0; i < dishesId.Count; ++i)
+        {
+            if (dishes[i] is null)
+            {
+                ModelState.AddModelError("", $"Dish with {dishesId[i]} doesn't exist");
+                return StatusCode(422, ModelState);
+            }
+        }
         await _foodSetService.UpdateAsync(foodSet, cancellationToken);
+        var createdFoodSet = await _foodSetService.GetAsync(foodSet.Id, cancellationToken);
+        if (createdFoodSet is null)
+        {
+            ModelState.AddModelError("", $"FoodSet wasn't found");
+            return StatusCode(422, ModelState);
+        }
+        foreach (var item in dishes)
+        {
+            await _dishesFoodSetsService.CreateAsync(new DishFoodSet { Dish = item!, FoodSet = createdFoodSet!, }, cancellationToken);
+        }
         return NoContent();
     }
 

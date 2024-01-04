@@ -9,4 +9,5 @@ public interface IDishService : ICrudService<Dish>
 
     public Task<IReadOnlyCollection<Dish>> getAllDishesByCategoryAsync(Category category, CancellationToken cancellationToken);
     public Task<IReadOnlyCollection<Dish>> GetAllDishesByCategoryAsync(string categoryName, CancellationToken cancellationToken);
+    public Task<IReadOnlyCollection<Dish>> GetAllDishesInFoodSetIdAsync(int foodSetId, CancellationToken cancellationToken);
 }

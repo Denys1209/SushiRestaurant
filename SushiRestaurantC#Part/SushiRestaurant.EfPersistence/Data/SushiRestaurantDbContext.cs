@@ -30,5 +30,9 @@ public class SushiRestaurantDbContext : DbContext
                 .WithMany(pc => pc.DishFoodSets)
                 .HasForeignKey(c => c.DishId).OnDelete(DeleteBehavior.Restrict);
 
+        modelBuilder.Entity<Dish>().Navigation(e => e.Category).AutoInclude();
+        modelBuilder.Entity<FoodSet>().Navigation(e => e.Category).AutoInclude();
+        modelBuilder.Entity<FoodSet>().Navigation(e => e.DishFoodSets).AutoInclude();
+
     }
 }

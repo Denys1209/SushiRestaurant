@@ -19,4 +19,13 @@ public class DishService : CrudService<Dish>, IDishService
     {
         return (IReadOnlyCollection<Dish>)(await _repository.GetAllAsync(cancellationToken)).Where(e => e.Category.Name == categoryName);
     }
+
+    public async Task<IReadOnlyCollection<Dish>> GetAllDishesInFoodSetIdAsync(int foodSetId, CancellationToken cancellationToken)
+    {
+        return (await _repository.GetDishFoodSetsAsync(cancellationToken))
+              .Where(m => m.FoodSetId == foodSetId)
+              .Select(e => e.Dish)
+              .ToList();
+
+    }
 }

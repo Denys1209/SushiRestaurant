@@ -4,7 +4,7 @@ using SushiRestaurant.WebApi.Filters.Validation;
 using SushiRstaurant.Domain.Models;
 using SushiRstaurant.Domain;
 using AutoMapper;
-using SushiRestaurant.WebApi.Dtos;
+using SushiRestaurant.WebApi.Dtos.Categories;
 
 namespace SushiRestaurant.WebApi.Controllers;
 
@@ -22,14 +22,14 @@ public class CategoriesController : Controller
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] FilterPaginationDto paginationDto, CancellationToken cancellationToken)
     {
-        var categories = _mapper.Map<List<CategoryDto>>(await _categoryService.GetAllAsync(paginationDto, cancellationToken));
+        var categories = _mapper.Map<List<GetCategoryDto>>(await _categoryService.GetAllAsync(paginationDto, cancellationToken));
         return Ok(categories);
     }
 
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get([FromRoute] int id, CancellationToken cancellationToken)
     {
-        var category = _mapper.Map<CategoryDto>(await _categoryService.GetAsync(id, cancellationToken));
+        var category = _mapper.Map<GetCategoryDto>(await _categoryService.GetAsync(id, cancellationToken));
         if (category is null)
             return NotFound();
 
@@ -40,7 +40,7 @@ public class CategoriesController : Controller
     [ValidationFilter]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Post([FromBody] CategoryDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Post([FromBody] CreateCategoryDto dto, CancellationToken cancellationToken)
     {
         var category = _mapper.Map<Category>(dto);
         var id = await _categoryService.CreateAsync(category, cancellationToken);
@@ -48,7 +48,7 @@ public class CategoriesController : Controller
     }
 
     [HttpPut]
-    public async Task<IActionResult> Put([FromBody] CategoryDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Put([FromBody] UpdateCategoryDto dto, CancellationToken cancellationToken)
     {
 
         var category = _mapper.Map<Category>(dto);

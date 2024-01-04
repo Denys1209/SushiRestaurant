@@ -4,8 +4,8 @@ using SushiRstaurant.Domain.Models;
 using SushiRstaurant.Domain;
 using SushiRestaurant.Application.Dishes;
 using AutoMapper;
-using SushiRestaurant.WebApi.Dtos;
 using SushiRestaurant.Application.Categories;
+using SushiRestaurant.WebApi.Dtos.Dish;
 
 namespace SushiRestaurant.WebApi.Controllers;
 
@@ -25,14 +25,14 @@ public class DishesController : Controller
     [HttpGet]
     public async Task<IActionResult> Get([FromQuery] FilterPaginationDto paginationDto, CancellationToken cancellationToken)
     {
-        var dishes = _mapper.Map<List<DishDto>>(await _dishService.GetAllAsync(paginationDto, cancellationToken));
+        var dishes = _mapper.Map<List<GetDishDto>>(await _dishService.GetAllAsync(paginationDto, cancellationToken));
         return Ok(dishes);
     }
 
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get([FromRoute] int id, CancellationToken cancellationToken)
     {
-        var dish = _mapper.Map<DishDto>(await _dishService.GetAsync(id, cancellationToken));
+        var dish = _mapper.Map<GetDishDto>(await _dishService.GetAsync(id, cancellationToken));
         if (dish is null)
             return NotFound();
 
@@ -42,7 +42,7 @@ public class DishesController : Controller
     [HttpGet("{categoryName}")]
     public async Task<IActionResult> Get([FromRoute] string categoryName, CancellationToken cancellationToken)
     {
-        var dish = _mapper.Map<List<DishDto>>(_dishService.GetAllDishesByCategoryAsync(categoryName, cancellationToken));
+        var dish = _mapper.Map<List<GetDishDto>>(_dishService.GetAllDishesByCategoryAsync(categoryName, cancellationToken));
         if (dish is null)
             return NotFound();
 
@@ -55,7 +55,7 @@ public class DishesController : Controller
     [ValidationFilter]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-    public async Task<IActionResult> Post([FromQuery] int categoryId, [FromBody] DishDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Post([FromQuery] int categoryId, [FromBody] CreateDishDto dto, CancellationToken cancellationToken)
     {
 
         var dish = _mapper.Map<Dish>(dto);
@@ -71,7 +71,7 @@ public class DishesController : Controller
     }
 
     [HttpPut]
-    public async Task<IActionResult> Put([FromBody] DishDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Put([FromBody] UpdateDishDto dto, CancellationToken cancellationToken)
     {
 
         var dish = _mapper.Map<Dish>(dto);
