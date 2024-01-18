@@ -42,7 +42,7 @@ public class DishesController : Controller
     [HttpGet("{categoryName}")]
     public async Task<IActionResult> Get([FromRoute] string categoryName, CancellationToken cancellationToken)
     {
-        var dish = _mapper.Map<List<GetDishDto>>(_dishService.GetAllDishesByCategoryAsync(categoryName, cancellationToken));
+        var dish = _mapper.Map<List<GetDishDto>>(await _dishService.GetAllDishesByCategoryAsync(categoryName, cancellationToken));
         if (dish is null)
             return NotFound();
 
