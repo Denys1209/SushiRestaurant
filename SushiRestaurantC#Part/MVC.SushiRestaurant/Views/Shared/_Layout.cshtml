@@ -14,26 +14,23 @@
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid ">
-            <a class="navbar-brand" href="#">Navbar</a>
+            <a class="navbar-brand" href="#">Sushi</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                    <li class="nav-item">
-                        <a class="nav-link text-white link-navbar" asp-controller="Home" asp-action="Index">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Link</a>
-                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Dropdown
+                            <span class="navbar-toggler-icon"></span>
                         </a>
                         <ul class="dropdown-menu bg-dark custom-dropdown" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item text-white" href="#">Action</a></li>
-                            <li><a class="dropdown-item text-white" href="#">Another action</a></li>
-                            <li><a class="dropdown-item text-white" href="#">Something else here</a></li>
+                            <li>
+                                <a class="dropdown-item text-white" asp-controller="Home" asp-action="Index">Home</a>
+                            </li>
+                            <li> <a class="dropdown-item text-white" asp-controller="AboutUs" asp-action="Index">About Us</a></li>
+                            <li> <a class="dropdown-item text-white" asp-controller="News" asp-action="Index">News</a></li>
+                            <li> <a class="dropdown-item text-white" asp-controller="Categories" asp-action="Index">Categories</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -43,8 +40,23 @@
     <div class="">
         @RenderBody()
         <hr />
-        <footer>
-            <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
+        <footer class="container-fluid bg-dark text-white py-3 mt-5">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-4">
+                        <h5>About Sushiya</h5>
+                        <p>Some text about Sushiya...</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Contacts</h5>
+                        <p>Some contact information...</p>
+                    </div>
+                    <div class="col-md-4">
+                        <h5>Phone</h5>
+                        <p>+380 (97) 712 55 52</p>
+                    </div>
+                </div>
+            </div>
         </footer>
     </div>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

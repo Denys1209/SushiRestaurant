@@ -8,6 +8,12 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Web.Optimization" Version="1.1.3" />
+    <PackageReference Include="Microsoft.Extensions.Http" Version="8.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Sushirestaurant.Application\SushiRestaurant.Application.csproj" />
+    <ProjectReference Include="..\SushiRstaurant.Domain\SushiRstaurant.Domain.csproj" />
   </ItemGroup>
 
 </Project>

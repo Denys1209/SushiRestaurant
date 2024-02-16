@@ -7,5 +7,23 @@
 }
 
 .carousel-item {
-    height: 520px;
+    height: 800px;
 }
+#map {
+    background: url('https://sushiya.ua/media/sushiya/images/map_block/cache/3/3/a/f/b/33afb64e1fa0e912e9643d2bf170974ae85165c2.webp') no-repeat center center;
+    background-size: cover;
+    height: 400px; /* Adjust as needed */
+}
+
+
+.background-cover-sushi {
+    background: url('https://sushiya.ua/media/sushiya/images/blog/cache/c/2/d/0/b/c2d0b6364967dba8b5edf42845f10cf1e6320e9a.webp') no-repeat center center;
+    background-size: cover;
+}
+
+.background-cover-logo-face {
+    background: url('https://sushiya.ua/media/sushiya/images/about_su/cache/4/5/e/2/2/45e22c6e56f4dedd526619dea83e9d5b8a14bfa4.webp')  no-repeat center center;
+
+    background-size: cover;
+}
+

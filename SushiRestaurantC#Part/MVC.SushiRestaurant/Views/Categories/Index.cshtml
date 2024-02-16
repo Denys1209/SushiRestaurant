@@ -1,0 +1,28 @@
+﻿@{
+    ViewData["Title"] = "Categories";
+}
+@model MVC.SushiRestaurant.ViewModels.CategoriesViewModel;
+
+<main>
+    <div class="container">
+        <h1 class="my-4">Categories</h1>
+
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">ID</th>
+                    <th scope="col">Name</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var category in Model.Categories)
+                {
+                    <tr>
+                        <td>@category.Id</td>
+                        <td>@category.Name</td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</main>
