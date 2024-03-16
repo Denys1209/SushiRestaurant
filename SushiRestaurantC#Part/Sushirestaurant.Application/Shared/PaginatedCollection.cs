@@ -8,5 +8,7 @@ public sealed record PaginatedCollection<TModel>(IReadOnlyCollection<TModel> Mod
     public IEnumerator<TModel> GetEnumerator() => Models.GetEnumerator();
    
     IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
+
+
  
 }

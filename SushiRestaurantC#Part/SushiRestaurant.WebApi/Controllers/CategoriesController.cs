@@ -62,5 +62,17 @@ public class CategoriesController : Controller
         await _categoryService.DeleteAsync(id, cancellationToken);
         return NoContent();
     }
+
+    [HttpGet("multiple")]
+    public async Task<IActionResult> GetMultiple([FromQuery] List<int> ids, CancellationToken cancellationToken)
+    {
+        var categories = await _categoryService.GetAllModelsByIdsAsync(ids, cancellationToken);
+        if (categories == null || !categories.Any())
+            return NotFound();
+
+        var categoryDtos = _mapper.Map<List<GetCategoryDto>>(categories);
+        return Ok(categoryDtos);
+    }
+
 }
 

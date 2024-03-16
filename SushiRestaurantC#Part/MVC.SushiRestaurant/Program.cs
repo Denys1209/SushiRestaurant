@@ -1,5 +1,8 @@
 
+using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.IdentityModel.Tokens;
 using MVC.SushiRestaurant.Extensions;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 

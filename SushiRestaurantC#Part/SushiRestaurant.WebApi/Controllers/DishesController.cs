@@ -6,6 +6,7 @@ using SushiRestaurant.Application.Dishes;
 using AutoMapper;
 using SushiRestaurant.Application.Categories;
 using SushiRestaurant.WebApi.Dtos.Dish;
+using SushiRestaurant.WebApi.Dtos.Categories;
 
 namespace SushiRestaurant.WebApi.Controllers;
 
@@ -62,7 +63,7 @@ public class DishesController : Controller
         Category? category = await _categoryService.GetAsync(categoryId, cancellationToken);
         if (category is null) 
         {
-            ModelState.AddModelError("", $"category with the {categoryId} id deosn't exist");
+            ModelState.AddModelError("", $"dish with the {categoryId} id deosn't exist");
             return StatusCode(422, ModelState);
         }
         dish.Category = category;
@@ -84,6 +85,17 @@ public class DishesController : Controller
     {
         await _dishService.DeleteAsync(id, cancellationToken);
         return NoContent();
+    }
+
+    [HttpGet("multiple")]
+    public async Task<IActionResult> GetMultiple([FromQuery] List<int> ids, CancellationToken cancellationToken)
+    {
+        var dishes = await _dishService.GetAllModelsByIdsAsync(ids, cancellationToken);
+        if (dishes == null || !dishes.Any())
+            return NotFound();
+
+        var dishDtos = _mapper.Map<List<GetDishDto>>(dishes);
+        return Ok(dishDtos);
     }
 
 }

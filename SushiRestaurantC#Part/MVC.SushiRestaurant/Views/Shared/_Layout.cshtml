@@ -11,9 +11,8 @@
 
 </head>
 <body>
-
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-        <div class="container-fluid ">
+        <div class="container-fluid">
             <a class="navbar-brand" href="#">Sushi</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
@@ -25,19 +24,22 @@
                             <span class="navbar-toggler-icon"></span>
                         </a>
                         <ul class="dropdown-menu bg-dark custom-dropdown" aria-labelledby="navbarDropdown">
-                            <li>
-                                <a class="dropdown-item text-white" asp-controller="Home" asp-action="Index">Home</a>
-                            </li>
-                            <li> <a class="dropdown-item text-white" asp-controller="AboutUs" asp-action="Index">About Us</a></li>
-                            <li> <a class="dropdown-item text-white" asp-controller="News" asp-action="Index">News</a></li>
-                            <li> <a class="dropdown-item text-white" asp-controller="Categories" asp-action="Index">Categories</a></li>
+                            <li><a class="dropdown-item text-white" asp-controller="Home" asp-action="Index">Home</a></li>
+                            <li><a class="dropdown-item text-white" asp-controller="AboutUs" asp-action="Index">About Us</a></li>
+                            <li><a class="dropdown-item text-white" asp-controller="News" asp-action="Index">News</a></li>
+                            <li><a class="dropdown-item text-white" asp-controller="Categories" asp-action="Index">Categories</a></li>
+                            <li><a class="dropdown-item text-white" asp-controller="Dishes" asp-action="Index">Dishes</a></li>
                         </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link btn btn-primary" href="#">Sign Up</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
-    <div class="">
+
+       <div class="">
         @RenderBody()
         <hr />
         <footer class="container-fluid bg-dark text-white py-3 mt-5">
