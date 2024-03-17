@@ -13,6 +13,6 @@
     <SourceRoot Include="C:\Users\PC\.nuget\packages\" />
   </ItemGroup>
   <PropertyGroup Condition=" '$(ExcludeRestorePackageImports)' != 'true' ">
-    <PkgWebGrease Condition=" '$(PkgWebGrease)' == '' ">C:\Users\Intel-PC\.nuget\packages\webgrease\1.5.2</PkgWebGrease>
+    <PkgWebGrease Condition=" '$(PkgWebGrease)' == '' ">C:\Users\PC\.nuget\packages\webgrease\1.5.2</PkgWebGrease>
   </PropertyGroup>
 </Project>
