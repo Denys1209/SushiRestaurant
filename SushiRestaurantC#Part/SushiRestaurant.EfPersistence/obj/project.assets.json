@@ -616,11 +616,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.EfPersistence\\SushiRestaurant.EfPersistence.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.EfPersistence\\SushiRestaurant.EfPersistence.csproj",
       "projectName": "SushiRestaurant.EfPersistence",
-      "projectPath": "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.EfPersistence\\SushiRestaurant.EfPersistence.csproj",
+      "projectPath": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.EfPersistence\\SushiRestaurant.EfPersistence.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.EfPersistence\\obj\\",
+      "outputPath": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.EfPersistence\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\PC\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -637,11 +637,11 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\SushiRestaurant.Application.csproj": {
-              "projectPath": "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\SushiRestaurant.Application.csproj"
+            "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\SushiRestaurant.Application.csproj": {
+              "projectPath": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\SushiRestaurant.Application.csproj"
             },
-            "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRstaurant.Domain\\SushiRstaurant.Domain.csproj": {
-              "projectPath": "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRstaurant.Domain\\SushiRstaurant.Domain.csproj"
+            "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRstaurant.Domain\\SushiRstaurant.Domain.csproj": {
+              "projectPath": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRstaurant.Domain\\SushiRstaurant.Domain.csproj"
             }
           }
         }

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "ZMOJGOqLzcumbnOWaLu9AXFkkaQoYRhrbRN3jLIo+w71LaHZ84SamvyAPMQw9ewKbSXIUsSNgxAanL3AGgoEcg==",
+  "dgSpecHash": "IeQITREuKO4D3kBS2qAZMf3/iulk7oIVx9OSnFFnKJYTHqnkhUojUojWkXjYqO5qcY6hTGTqi4H4ByP5RhzbRg==",
   "success": true,
-  "projectFilePath": "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.EfPersistence\\SushiRestaurant.EfPersistence.csproj",
+  "projectFilePath": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.EfPersistence\\SushiRestaurant.EfPersistence.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0\\microsoft.entityframeworkcore.8.0.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.0\\microsoft.entityframeworkcore.abstractions.8.0.0.nupkg.sha512",

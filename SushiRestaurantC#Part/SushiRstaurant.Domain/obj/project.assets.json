@@ -32,9 +32,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRstaurant.Domain\\SushiRstaurant.Domain.csproj",
+      "projectUniqueName": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRstaurant.Domain\\SushiRstaurant.Domain.csproj",
       "projectName": "SushiRstaurant.Domain",
-      "projectPath": "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRstaurant.Domain\\SushiRstaurant.Domain.csproj",
+      "projectPath": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRstaurant.Domain\\SushiRstaurant.Domain.csproj",
       "packagesPath": "C:\\Users\\PC\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRstaurant.Domain\\obj\\",
       "projectStyle": "PackageReference",
@@ -53,8 +53,8 @@
         "net8.0": {
           "targetAlias": "net8.0",
           "projectReferences": {
-            "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.Constants\\SushiRestaurant.Constants.csproj": {
-              "projectPath": "C:\\Users\\PC\\Source\\Repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.Constants\\SushiRestaurant.Constants.csproj"
+            "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.Constants\\SushiRestaurant.Constants.csproj": {
+              "projectPath": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.Constants\\SushiRestaurant.Constants.csproj"
             }
           }
         }
