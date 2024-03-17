@@ -18,12 +18,28 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = C:\Users\PC\source\repos\Denys1209\SushiRestaurant\SushiRestaurantC#Part\MVC.SushiRestaurant
 build_property._RazorSourceGeneratorDebug = 
 
+[C:/Users/PC/source/repos/Denys1209/SushiRestaurant/SushiRestaurantC\#Part/MVC.SushiRestaurant/Views/AboutUs/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQWJvdXRVc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PC/source/repos/Denys1209/SushiRestaurant/SushiRestaurantC\#Part/MVC.SushiRestaurant/Views/Categories/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcQ2F0ZWdvcmllc1xJbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PC/source/repos/Denys1209/SushiRestaurant/SushiRestaurantC\#Part/MVC.SushiRestaurant/Views/Dishes/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcRGlzaGVzXEluZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [C:/Users/PC/source/repos/Denys1209/SushiRestaurant/SushiRestaurantC\#Part/MVC.SushiRestaurant/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/PC/source/repos/Denys1209/SushiRestaurant/SushiRestaurantC\#Part/MVC.SushiRestaurant/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3NcSG9tZVxQcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/PC/source/repos/Denys1209/SushiRestaurant/SushiRestaurantC\#Part/MVC.SushiRestaurant/Views/News/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3NcTmV3c1xJbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [C:/Users/PC/source/repos/Denys1209/SushiRestaurant/SushiRestaurantC\#Part/MVC.SushiRestaurant/Views/Shared/Error.cshtml]

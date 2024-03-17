@@ -1,22 +1,29 @@
-html {
-  font-size: 14px;
+.custom-dropdown .dropdown-item:hover {
+    background-color: #343a40; 
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+#myCarousel {
+    margin:auto;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+.carousel-item {
+    height: 800px;
+}
+#map {
+    background: url('https://sushiya.ua/media/sushiya/images/map_block/cache/3/3/a/f/b/33afb64e1fa0e912e9643d2bf170974ae85165c2.webp') no-repeat center center;
+    background-size: cover;
+    height: 400px; /* Adjust as needed */
 }
 
-html {
-  position: relative;
-  min-height: 100%;
+
+.background-cover-sushi {
+    background: url('https://sushiya.ua/media/sushiya/images/blog/cache/c/2/d/0/b/c2d0b6364967dba8b5edf42845f10cf1e6320e9a.webp') no-repeat center center;
+    background-size: cover;
 }
 
-body {
-  margin-bottom: 60px;
+.background-cover-logo-face {
+    background: url('https://sushiya.ua/media/sushiya/images/about_su/cache/4/5/e/2/2/45e22c6e56f4dedd526619dea83e9d5b8a14bfa4.webp')  no-repeat center center;
+
+    background-size: cover;
 }
+

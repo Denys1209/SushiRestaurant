@@ -6,6 +6,8 @@ namespace SushiRestaurant.Application.Dishes;
 
 public interface IDishService : ICrudService<Dish>
 {
-    IReadOnlyCollection<Dish> GetAllDishesByCategory(string category, CancellationToken cancellationToken);
 
+    public Task<IReadOnlyCollection<Dish>> getAllDishesByCategoryAsync(Category category, CancellationToken cancellationToken);
+    public Task<IReadOnlyCollection<Dish>> GetAllDishesByCategoryAsync(string categoryName, CancellationToken cancellationToken);
+    public Task<IReadOnlyCollection<Dish>> GetAllDishesInFoodSetIdAsync(int foodSetId, CancellationToken cancellationToken);
 }

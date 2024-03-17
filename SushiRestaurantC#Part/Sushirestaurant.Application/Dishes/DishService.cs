@@ -10,8 +10,22 @@ public class DishService : CrudService<Dish>, IDishService
     {
     }
 
-    public IReadOnlyCollection<Dish> GetAllDishesByCategory(string category, CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<Dish>> getAllDishesByCategoryAsync(Category category, CancellationToken cancellationToken)
     {
-        throw new NotImplementedException();
+        return (IReadOnlyCollection<Dish>)(await _repository.GetAllAsync(cancellationToken)).Where(e => e.Category == category);
+    }
+
+    public async Task<IReadOnlyCollection<Dish>> GetAllDishesByCategoryAsync(string categoryName, CancellationToken cancellationToken)
+    {
+        return (IReadOnlyCollection<Dish>)(await _repository.GetAllAsync(cancellationToken)).Where(e => e.Category.Name == categoryName);
+    }
+
+    public async Task<IReadOnlyCollection<Dish>> GetAllDishesInFoodSetIdAsync(int foodSetId, CancellationToken cancellationToken)
+    {
+        return (await _repository.GetDishFoodSetsAsync(cancellationToken))
+              .Where(m => m.FoodSetId == foodSetId)
+              .Select(e => e.Dish)
+              .ToList();
+
     }
 }

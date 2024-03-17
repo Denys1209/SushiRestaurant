@@ -1,0 +1,173 @@
+﻿@{
+    ViewData["Title"] = "Dishes";
+}
+@model MVC.SushiRestaurant.ViewModels.DishesViewModel;
+
+<main>
+    <div class="container">
+        <div class="d-flex justify-content-between align-items-center my-4">
+            <h1 class="mb-0">Dish</h1>
+            <button class="btn btn-primary" id="createDishButton">
+                Create a new Dish
+            </button>
+        </div>
+
+        <div class="row g-4">
+            @foreach (var dish in Model.Dishes)
+            {
+                <div class="col-md-2">
+                    <div class="card h-100">
+                        <img src="@dish.ImageURL" class="card-img-top" alt="@dish.Name">
+                        <div class="card-body">
+                            <h5 class="card-title">@dish.Name</h5>
+                            <p class="card-text">ID: @dish.Id</p>
+                            <p class="card-text">Category: @dish.Category.Name</p>
+                            <p class="card-text">price: @dish.Cost.ToString("0.00")$</p>
+                            <p class="card-text">Description: @dish.Description</p>
+                            <div class="d-flex justify-content-between align-items-center">
+                                <form action="@Url.Action("Delete", "Dishes")" method="post">
+                                    @Html.Hidden("Id", dish.Id)
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                </form>
+                                <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editDishModalWindow" data-id="@dish.Id">Update</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</main>
+
+<!-- Modal for edit dish -->
+<div class="modal fade" id="editDishModalWindow" tabindex="-1" role="dialog" aria-labelledby="editDishModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editDishModalLabel">Edit Dish</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editDishForm">
+                    <input type="hidden" id="editDishId" name="Id" />
+                    <div class="form-group pb-3">
+                        <label for="editDishName">Name</label>
+                        <input type="text" class="form-control" id="editDishName" name="Name">
+                    </div>
+                    <select name="CategoryId" id="editCategoryDishSelector">
+                    </select>
+
+                    <button type="submit" class="btn btn-primary p-2">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for create dish -->
+<div class="modal fade" id="createDishModalWindow" tabindex="-1" role="dialog" aria-labelledby="createDishButtonLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createDishButtonLabel">Create Dish</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createDishForm">
+                    <div class="form-group pb-3">
+                        <label for="createDishName" class="col-sm-2 col-form-label"> Name</label>
+                        <input type="text" class="form-control" id="createDishName" name="Name">
+                    </div>
+                    <div class="form-group pb-3">
+                        <label for="createDishPrice" class="col-sm-2 col-form-label"> Price</label>
+                        <input type="text" class="form-control" id="createDishPrice" name="Price">
+                    </div>
+                    <div class="form-group pb-3">
+                        <label for="createDishName" class="col-sm-2 col-form-label"> Description</label>
+                        <input type="text" class="form-control" id="createDishName" name="Description">
+                    </div>
+                    <div class="form-group pb-3">
+                        <select name="CategoryId" id="createCategoryDishSelector">
+                        </select>
+                    </div>
+
+                    <button type="submit" class="btn btn-primary p-2">Create Dish</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts {
+    <script>
+        $(document).ready(function () {
+
+            $('.close').click(function () {
+                $('#createDishModalWindow').modal('hide');
+                $('#editDishModalWindow').modal('hide');
+            });
+
+            $('#createDishButton').click(function () {
+                $('#createDishModalWindow').modal('show');
+            });
+
+            $('#editDishModalWindow').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.data('id');
+
+                $.get('/Dishes/Edit', { id: id })
+                    .done(function (data) {
+                        $('#editDishId').val(data.id);
+                        $('#editDishName').val(data.name);
+                    });
+            });
+
+            $('#createDishForm').submit(function (e) {
+                e.preventDefault();
+                var formData = $(this).serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '/Dishes/Create',
+                    data: formData,
+                    success: function (response) {
+                        $('#createDishModalWindow').modal('hide');
+                    },
+                    error: function (err) {
+                        console.log(err)
+                    }
+                });
+            });
+
+            $('#editDishForm').on('submit', function (event) {
+                event.preventDefault();
+                var formData = $(this).serialize();
+                $.post('/Dishes/Edit', formData)
+                    .done(function () {
+                        $('#editDishModalWindow').modal('hide');
+                        location.reload();
+                    });
+            });
+
+            $(document).ready(function () {
+                $.get('/Categories/GetAll', {}).done(function (data) {
+                    console.log("Data received:", data);
+                    $.each(data, function (i, model) {
+                        console.log("Model:", model);
+                        var opt = document.createElement('option');
+                        opt.value = model.id;
+                        opt.text = model.name;
+                        $('#createCategoryDishSelector').append(opt);
+                        $('#editCategoryDishSelector').append(opt);
+                    });
+                }).fail(function (jqXHR, textStatus, errorThrown) {
+                    console.error("AJAX request failed:", textStatus, errorThrown);
+                });
+            });
+        });
+    </script>
+}

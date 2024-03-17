@@ -1,5 +1,9 @@
 ﻿using AutoMapper;
-using SushiRestaurant.WebApi.Dtos;
+using SushiRestaurant.WebApi.Dtos.Categories;
+using SushiRestaurant.WebApi.Dtos.Dish;
+using SushiRestaurant.WebApi.Dtos.FoodSet;
+using SushiRestaurant.WebApi.Dtos.FoodSets;
+using SushiRestaurant.WebApi.Dtos.UserDtos;
 using SushiRstaurant.Domain.Models;
 
 namespace SushiRestaurant.WebApi.Helper
@@ -8,13 +12,32 @@ namespace SushiRestaurant.WebApi.Helper
     {
         public MappingProfiles()
         {
-            CreateMap<Category, CategoryDto>();
-            CreateMap<Dish, DishDto>();
-            CreateMap<FoodSet, FoodSetDto>();
+            CreateMap<Category, UpdateCategoryDto>();
+            CreateMap<Dish, UpdateDishDto>();
+            CreateMap<FoodSet, UpdateFoodSetDto>();
+            CreateMap<User,  UpdateUserDto>();
 
-            CreateMap<CategoryDto, Category>();
-            CreateMap<DishDto, Dish>();
-            CreateMap<FoodSetDto,FoodSet>();
+            CreateMap<Category, GetCategoryDto>();
+            CreateMap<Dish, GetDishDto>();
+            CreateMap<FoodSet, GetFoodSetDto>();
+            CreateMap<User, GetUserDto>();
+
+
+
+            CreateMap<UpdateCategoryDto, Category>();
+            CreateMap<UpdateDishDto, Dish>();
+            CreateMap<UpdateFoodSetDto,FoodSet>();
+            CreateMap<UpdateUserDto,User>();
+
+            CreateMap<CreateCategoryDto, Category>();
+            CreateMap<CreateDishDto, Dish>();
+            CreateMap<CreateFoodSetDto,FoodSet>();
+            CreateMap<CreateUserDto,User>();
+
+
+
+
+
 
         }
     }

@@ -10,5 +10,8 @@ public interface ICrudRepository<TModel> where TModel : Model
     Task DeleteAsync(int id, CancellationToken cancellationToken);
     Task<TModel?> GetAsync(int id, CancellationToken cancellationToken);
     Task<PaginatedCollection<TModel>> GetAllAsync(FilterPaginationDto dto, CancellationToken cancellationToken);
+    Task<IReadOnlyCollection<TModel>> GetAllAsync(CancellationToken cancellationToken);
     Task<IReadOnlyCollection<TModel?>> GetAllModelsByIdsAsync(List<int> ids, CancellationToken cancellationToken);
+    Task<IReadOnlyCollection<DishFoodSet>> GetDishFoodSetsAsync(CancellationToken cancellationToken);
+
 }

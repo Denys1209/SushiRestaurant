@@ -1,5 +1,4 @@
-﻿using SushiRestaurant.Constants;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using SushiRestaurant.Application.Shared;
 using SushiRestaurant.EfPersistence.Data;
 using SushiRstaurant.Domain;
@@ -17,10 +16,6 @@ public abstract class CrudRepository<TModel> : ICrudRepository<TModel> where TMo
     }
     public async Task<int> AddAsync(TModel model, CancellationToken cancellationToken)
     {
-        //if (model.Id != default(int))
-        //{
-        //    throw new InvalidOperationException("Cannot insert explicit value for identity column in table 'Categories' when IDENTITY_INSERT is set to OFF.");
-        //}
         await DbContext.Set<TModel>().AddAsync(model, cancellationToken);
         await DbContext.SaveChangesAsync(cancellationToken);
         return model.Id;
@@ -71,10 +66,20 @@ public abstract class CrudRepository<TModel> : ICrudRepository<TModel> where TMo
         return new PaginatedCollection<TModel>(models, totalItems);
     }
 
+    public async Task<IReadOnlyCollection<TModel>> GetAllAsync(CancellationToken cancellationToken)
+    {
+        return await DbContext.Set<TModel>().ToArrayAsync(cancellationToken);
+    }
+
     public async Task<IReadOnlyCollection<TModel?>> GetAllModelsByIdsAsync(List<int> ids, CancellationToken cancellationToken)
     {
         return await DbContext.Set<TModel>().Where(m => ids.Contains(m.Id)).ToArrayAsync(cancellationToken);
 
+    }
+
+    public async Task<IReadOnlyCollection<DishFoodSet>> GetDishFoodSetsAsync(CancellationToken cancellationToken)
+    {
+        return await DbContext.Set<DishFoodSet>().Include(m => m.Dish).Include(m => m.FoodSet).ToArrayAsync(cancellationToken);
     }
 
     protected abstract void Update(TModel model, TModel entity);
@@ -82,6 +87,5 @@ public abstract class CrudRepository<TModel> : ICrudRepository<TModel> where TMo
     protected abstract IQueryable<TModel> Filter(IQueryable<TModel> query, string filter);
 
     protected abstract IQueryable<TModel> Sort(IQueryable<TModel> query, string orderBy, bool isAscending);
-
 
 }

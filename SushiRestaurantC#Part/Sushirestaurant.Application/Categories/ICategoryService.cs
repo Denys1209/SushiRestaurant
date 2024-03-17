@@ -5,5 +5,4 @@ namespace SushiRestaurant.Application.Categories;
 
 public interface ICategoryService : ICrudService<Category>
 {
-
 }

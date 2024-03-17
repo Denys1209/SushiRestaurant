@@ -1,0 +1,160 @@
+﻿@{
+    ViewData["Title"] = "Categories";
+}
+@model MVC.SushiRestaurant.ViewModels.CategoriesViewModel;
+
+<main>
+    <div class="container">
+        <div class="d-flex justify-content-between">
+            <div>
+                <h1 class="my-4">Categories</h1>
+            </div>
+            <div class="my-4">
+                <button class="btn btn-primary" id="createCategoryButton">
+                    Create a new category
+                </button>
+            </div>
+
+        </div>
+
+        <div class="row">
+            @foreach (var category in Model.Categories)
+            {
+                <div class="col-md-2">
+                    <div class="card mb-4">
+                        <div class="card-body">
+                            <h5 class="card-title">@category.Name</h5>
+                            <p class="card-text">ID: @category.Id</p>
+                            <div class="d-flex justify-content-between">
+                                @using (Html.BeginForm("Delete", "Categories", FormMethod.Post))
+                                {
+                                    @Html.Hidden("Id", category.Id)
+                                    <button type="submit" class="btn btn-danger">Delete</button>
+                                }
+                                <a class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editCategoryModalWindow" data-id="@category.Id">Update</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</main>
+
+
+<!-- Modal for create category -->
+<div class="modal fade" id="createCategoryModalWindow" tabindex="-1" role="dialog" aria-labelledby="createCategoryButtonLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createCategoryButtonLabel">Create Category</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createCategoryForm">
+                    <div class="form-group pb-3">
+                        <label for="createCategoryName" class="col-sm-2 col-form-label">Category Name</label>
+                        <input type="text" class="form-control" id="createCategoryName" name="Name">
+                    </div>
+                    <button type="submit" class="btn btn-primary p-2">Create Category</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal for edit -->
+<div class="modal fade" id="editCategoryModalWindow" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editModalLabel">Edit Category</h5>
+                <button type="button" class="close" data-dismiss="model" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="editForm">
+                    <input type="hidden" id="editId" name="Id" />
+                    <div class="form-group pb-3">
+                        <label for="editName">Name</label>
+                        <input type="text" class="form-control" id="editName" name="Name">
+                    </div>
+                    <button type="submit" class="btn btn-primary p-2">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+@section Scripts 
+{
+
+    <script>
+
+        $(document).ready(function () {
+
+            $('.close').click(function () {
+                $('#createCategoryButton').modal('hide');
+                $('#editCategoryModalWindow').modal('hide');
+            });
+
+            $('#createCategoryButton').click(function () {
+                $('#createCategoryModalWindow').modal('show');
+            });
+
+            $('#editCategoryModalWindow').on('show.bs.modal', function (event) {
+                var button = $(event.relatedTarget);
+                var id = button.attr('data-id');
+
+                $.get('/Categories/Edit', { id: id })
+                    .done(function (data) {
+                        $('#editId').val(data.id);
+                        $('#editName').val(data.name);
+                    });
+            });
+
+
+
+            $('#createCategoryForm').submit(function (e) {
+                e.preventDefault();
+                var formData = $(this).serialize(); // Serialize form data
+                $.ajax({
+                    type: 'POST',
+                    url: '/Categories/Create', // Replace with your controller's create action URL
+                    data: formData,
+                    success: function (response) {
+                        // Handle the response from the server
+                        $('#createCategoryModalWindow').modal('hide');
+                    },
+                    error: function () {
+                        // Handle errors
+                    }
+                });
+            });
+
+            $('#editForm').on('submit', function (event) {
+                event.preventDefault();
+                // Get form data
+                var formData = $(this).serialize();
+                $.post('/Categories/Edit', formData)
+                    .done(function () {
+                        // Close the modal
+                        $('#editCategoryModalWindow').modal('hide');
+
+                        // Refresh the categories list
+                        // You could use AJAX here too to refresh the list without reloading the page
+                        location.reload();
+                    });
+            });
+
+
+
+        });
+    </script>
+
+}

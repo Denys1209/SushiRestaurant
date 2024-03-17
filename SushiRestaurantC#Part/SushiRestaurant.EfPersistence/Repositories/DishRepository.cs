@@ -30,7 +30,7 @@ public sealed class DishRepository : CrudRepository<Dish>, IDishRepository
     {
         return DbContext.Set<Dish>().Where((x) => x.Category.Name == category).ToArray();
     }
-
+  
     protected override IQueryable<Dish> Filter(IQueryable<Dish> query, string filter)
     {
         return query.Where(m => m.Name.Contains(filter));
