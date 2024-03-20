@@ -11,6 +11,7 @@ public sealed class Dish : Model
     public required string ImageURL { get; set; }
 
     public ICollection<DishFoodSet> DishFoodSets { get; set; }
+    //public ICollection<UserDish> UserDishs { get; set; }
 
 
     [ForeignKey("CategoryId")]
@@ -27,10 +28,12 @@ public sealed class Dish : Model
         ImageURL = imageUrl;
         Category = category;
         DishFoodSets = new List<DishFoodSet>();
+        //UserDishs = new List<UserDish>();
     }
 
     public Dish() {
         DishFoodSets = new List<DishFoodSet>();
+        //UserDishs = new List<UserDish>();
     }
 
     public override bool IsMatch(string searchTerm)

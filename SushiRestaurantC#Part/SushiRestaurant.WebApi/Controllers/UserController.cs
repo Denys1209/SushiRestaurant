@@ -7,8 +7,6 @@ using SushiRstaurant.Domain.Models;
 using SushiRstaurant.Domain;
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using YourNamespace.Models;
-using YourNamespace.Services;
 
 public class UserController : Controller
 {
@@ -24,14 +22,14 @@ public class UserController : Controller
     [HttpGet]
     public async Task<IActionResult> GetAll([FromQuery] FilterPaginationDto paginationDto, CancellationToken cancellationToken)
     {
-        var users = _mapper.Map<List<UserDto>>(await _userService.GetAllAsync(paginationDto, cancellationToken));
+        var users = _mapper.Map<List<GetUserDto>>(await _userService.GetAllAsync(paginationDto, cancellationToken));
         return Ok(users);
     }
 
     [HttpGet("{id:int}")]
     public async Task<IActionResult> Get([FromRoute] int id, CancellationToken cancellationToken)
     {
-        var user = _mapper.Map<UserDto>(await _userService.GetAsync(id, cancellationToken));
+        var user = _mapper.Map<GetUserDto>(await _userService.GetAsync(id, cancellationToken));
         if (user is null)
             return NotFound();
 
@@ -64,10 +62,10 @@ public class UserController : Controller
         return NoContent();
     }
 
-    [HttpGet("exists")]
-    public async Task<IActionResult> CheckUserExists([FromQuery] string email, CancellationToken cancellationToken)
-    {
-        var exists = await _userService.CheckUserExistsAsync(email, cancellationToken);
-        return Ok(new { exists });
-    }
+    //[HttpGet("exists")]
+    //public async Task<IActionResult> CheckUserExists([FromQuery] string email, CancellationToken cancellationToken)
+    //{
+    //    var exists = await _userService.CheckUserExistsAsync(email, cancellationToken);
+    //    return Ok(new { exists });
+    //}
 }

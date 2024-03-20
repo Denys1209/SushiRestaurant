@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "9y388DwYltnKhaEKvhWRETrQQCAcBGLFJlmiCwPIzqIw0b7eOcLOKKTh3TOxeyuxuo9/ZHO90Gxgk3dlRb8x6g==",
+  "dgSpecHash": "LU051Dt4Jx2/3lwnUGa6jP1/l8Wdzn8tTQz3UGtdxU2wV1w0dtWHD2jPY6S5jRxQVwKRFRQ6D5X7/RjdKgaE3w==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\MVC.SushiRestaurant\\MVC.SushiRestaurant.csproj",
   "expectedPackageFiles": [
@@ -33,12 +33,6 @@
     "C:\\Users\\PC\\.nuget\\packages\\webgrease\\1.5.2\\webgrease.1.5.2.nupkg.sha512"
   ],
   "logs": [
-    {
-      "code": "Undefined",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Problem reading the cache file C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\MVC.SushiRestaurant\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
-    },
     {
       "code": "NU1701",
       "level": "Warning",

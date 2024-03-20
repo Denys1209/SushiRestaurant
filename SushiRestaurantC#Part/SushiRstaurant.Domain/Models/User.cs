@@ -1,20 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace SushiRstaurant.Domain.Models;
 
 public sealed class User : Model
 {
-    public User(string email, string password, string userName) 
-    {
-        this.Email = email;
-        this.Password = password;
-        this.Username = userName;
-    }
+    
 
     [Required]
     [EmailAddress]
@@ -27,6 +17,16 @@ public sealed class User : Model
     [Required]
     [StringLength(100, MinimumLength = 3)]
     public string Username { get; set; }
+
+
+    //public ICollection<UserDish> UserDishs { get; set; }
+    public User(string email, string password, string userName) 
+    {
+        this.Email = email;
+        this.Password = password;
+        this.Username = userName;
+        //this.UserDishs = new List<UserDish>();
+    }
 
     public override bool IsMatch(string searchTerm)
     {

@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SushiRestaurant.EfPersistence")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7240aa524a8e7a7af918b7df70ba64e4fb84c8f6")]
 [assembly: System.Reflection.AssemblyProductAttribute("SushiRestaurant.EfPersistence")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SushiRestaurant.EfPersistence")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

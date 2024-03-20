@@ -12,12 +12,12 @@ public class DishService : CrudService<Dish>, IDishService
 
     public async Task<IReadOnlyCollection<Dish>> getAllDishesByCategoryAsync(Category category, CancellationToken cancellationToken)
     {
-        return (IReadOnlyCollection<Dish>)(await _repository.GetAllAsync(cancellationToken)).Where(e => e.Category == category);
+        return (await _repository.GetAllAsync(cancellationToken)).Where(e => e.Category == category).ToArray();
     }
 
     public async Task<IReadOnlyCollection<Dish>> GetAllDishesByCategoryAsync(string categoryName, CancellationToken cancellationToken)
     {
-        return (IReadOnlyCollection<Dish>)(await _repository.GetAllAsync(cancellationToken)).Where(e => e.Category.Name == categoryName);
+        return (await _repository.GetAllAsync(cancellationToken)).Where(e => e.Category.Name.ToLower() == categoryName.ToLower()).ToArray();
     }
 
     public async Task<IReadOnlyCollection<Dish>> GetAllDishesInFoodSetIdAsync(int foodSetId, CancellationToken cancellationToken)

@@ -38,6 +38,11 @@ public class DishApiService : IDishService
         return response;
     }
 
+    public IReadOnlyCollection<Dish> GetAllDishesByCategory(string category, CancellationToken cancellationToken)
+    {
+        throw new NotImplementedException();
+    }
+
     public async Task<IReadOnlyCollection<Dish>> GetAllDishesByCategoryAsync(string categoryName, CancellationToken cancellationToken)
     {
         var response = await _httpClient.GetAsync($"Dishes/{categoryName}", cancellationToken);
