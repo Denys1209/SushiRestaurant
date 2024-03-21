@@ -6,6 +6,7 @@ using SushiRestaurant.WebApi.Filters.Validation;
 using SushiRstaurant.Domain.Models;
 using SushiRstaurant.Domain;
 
+namespace SushiRestaurant.WebApi.Controllers;
 public class UserController : Controller
 {
     private readonly IUserService _userService;
