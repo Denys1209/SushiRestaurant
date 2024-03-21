@@ -24,6 +24,9 @@ public class DishFoodSetRepository : CrudRepository<DishFoodSet>, IDishFoodSetRe
 
     protected override void Update(DishFoodSet model, DishFoodSet entity)
     {
-        throw new NotImplementedException();
+        entity.Dish = model.Dish;
+        entity.DishId = model.DishId;
+        entity.FoodSet = model.FoodSet;
+        entity.FoodSetId = model.FoodSetId;
     }
 }

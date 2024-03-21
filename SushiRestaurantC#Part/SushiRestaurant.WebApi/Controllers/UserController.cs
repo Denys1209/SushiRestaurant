@@ -5,8 +5,6 @@ using SushiRestaurant.WebApi.Dtos.UserDtos;
 using SushiRestaurant.WebApi.Filters.Validation;
 using SushiRstaurant.Domain.Models;
 using SushiRstaurant.Domain;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 
 public class UserController : Controller
 {

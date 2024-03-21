@@ -21,10 +21,20 @@ public class SushiRestaurantDbContext : DbContext
     {
         modelBuilder.Entity<DishFoodSet>()
                      .HasKey(pc => new { pc.DishId, pc.FoodSetId });
+
+        modelBuilder.Entity<UserDish>()
+                          .HasKey(pc => new { pc.DishId, pc.UserId });
+
+        modelBuilder.Entity<OrderDish>()
+                          .HasKey(pc => new { pc.DishId, pc.OrderId });
+
+
+
         modelBuilder.Entity<DishFoodSet>()
                   .HasOne(p => p.FoodSet)
                   .WithMany(pc => pc.DishFoodSets)
                   .HasForeignKey(p => p.FoodSetId).OnDelete(DeleteBehavior.Restrict);
+
         modelBuilder.Entity<DishFoodSet>()
                 .HasOne(p => p.Dish)
                 .WithMany(pc => pc.DishFoodSets)
@@ -33,6 +43,7 @@ public class SushiRestaurantDbContext : DbContext
         modelBuilder.Entity<Dish>().Navigation(e => e.Category).AutoInclude();
         modelBuilder.Entity<FoodSet>().Navigation(e => e.Category).AutoInclude();
         modelBuilder.Entity<FoodSet>().Navigation(e => e.DishFoodSets).AutoInclude();
-
+        modelBuilder.Entity<User>().Navigation(e => e.UserDishes).AutoInclude();
+        modelBuilder.Entity<Order>().Navigation(e => e.OrderDishes).AutoInclude();
     }
 }

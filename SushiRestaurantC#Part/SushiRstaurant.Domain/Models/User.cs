@@ -18,16 +18,19 @@ public sealed class User : Model
     [StringLength(100, MinimumLength = 3)]
     public string Username { get; set; }
 
-
-    //public ICollection<UserDish> UserDishs { get; set; }
+    public ICollection<UserDish> UserDishes { get; set; }
     public User(string email, string password, string userName) 
     {
         this.Email = email;
         this.Password = password;
         this.Username = userName;
-        //this.UserDishs = new List<UserDish>();
+        this.UserDishes = new List<UserDish>();
     }
 
+    public User() 
+    {
+        this.UserDishes = new List<UserDish>();
+    }
     public override bool IsMatch(string searchTerm)
     {
         throw new NotImplementedException();

@@ -11,7 +11,8 @@ public sealed class Dish : Model
     public required string ImageURL { get; set; }
 
     public ICollection<DishFoodSet> DishFoodSets { get; set; }
-    //public ICollection<UserDish> UserDishs { get; set; }
+    public ICollection<UserDish> UserDishes { get; set; }
+    public ICollection<OrderDish> OrderDishes { get; set; }
 
 
     [ForeignKey("CategoryId")]
@@ -28,12 +29,14 @@ public sealed class Dish : Model
         ImageURL = imageUrl;
         Category = category;
         DishFoodSets = new List<DishFoodSet>();
-        //UserDishs = new List<UserDish>();
+        UserDishes = new List<UserDish>();
+        OrderDishes = new List<OrderDish>();
     }
 
     public Dish() {
-        DishFoodSets = new List<DishFoodSet>();
-        //UserDishs = new List<UserDish>();
+        this.DishFoodSets = new List<DishFoodSet>();
+        this.UserDishes = new List<UserDish>();
+        this.OrderDishes = new List<OrderDish>();
     }
 
     public override bool IsMatch(string searchTerm)

@@ -6,11 +6,6 @@ public sealed class Category : Model
 {
 
     public required string Name { get; set; }
-   
-   
-
-
-
     public Category(string name) 
     {
         Name = name;

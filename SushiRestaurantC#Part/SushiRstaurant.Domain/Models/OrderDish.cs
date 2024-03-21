@@ -2,6 +2,7 @@
 namespace SushiRstaurant.Domain.Models;
 public class OrderDish : Model
 {
+    public uint quantity { get; set; }
     public int DishId { get; set; }
     public required Dish Dish { get; set; }
 
