@@ -30,4 +30,7 @@ static public class Constants
     public const string EmailStringUser = "Email";
     public const string PasswordStringUser = "Password";
 
+    //Order
+    public const string CostStringOrder = "Cost";
+    public const string DateTimeStringOrder = "DateTime";
 }

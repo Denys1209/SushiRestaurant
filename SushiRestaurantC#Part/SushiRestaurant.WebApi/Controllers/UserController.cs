@@ -5,16 +5,19 @@ using SushiRestaurant.WebApi.Dtos.UserDtos;
 using SushiRestaurant.WebApi.Filters.Validation;
 using SushiRstaurant.Domain.Models;
 using SushiRstaurant.Domain;
+using SushiRestaurant.Application.UserDishes;
 
 namespace SushiRestaurant.WebApi.Controllers;
 public class UserController : Controller
 {
     private readonly IUserService _userService;
+    private readonly IUserDishService _userDishService;
     private readonly IMapper _mapper;
 
-    public UserController(IUserService userService, IMapper mapper)
+    public UserController(IUserService userService, IUserDishService userDishService, IMapper mapper)
     {
         _userService = userService;
+        _userDishService = userDishService;
         _mapper = mapper;
     }
 

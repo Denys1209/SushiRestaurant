@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using SushiRestaurant.Constants;
+using System.ComponentModel.DataAnnotations;
+using System.Xml.Linq;
 
 namespace SushiRstaurant.Domain.Models;
 
@@ -38,6 +40,12 @@ public sealed class User : Model
 
     public override object? SortBy(string sortColumn)
     {
-        throw new NotImplementedException();
+        return sortColumn switch
+        {
+            Constants.UserNameStringUser => Username,
+            Constants.EmailStringUser => Email,
+            Constants.IdStringName => Id,
+            _ => Id
+        };
     }
 }

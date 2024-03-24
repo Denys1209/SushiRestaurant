@@ -9,7 +9,6 @@ using SushiRestaurant.Application.DIshesFoodSets;
 using SushiRestaurant.Application.Categories;
 using SushiRestaurant.WebApi.Dtos.FoodSet;
 using SushiRestaurant.WebApi.Dtos.FoodSets;
-using System.Collections.Generic;
 using SushiRestaurant.WebApi.Dtos.Dish;
 
 namespace SushiRestaurant.WebApi.Controllers;
@@ -119,10 +118,15 @@ public class FoodSetController : Controller
             ModelState.AddModelError("", $"FoodSet wasn't found");
             return StatusCode(422, ModelState);
         }
+        foreach (var item in createdFoodSet.DishFoodSets) 
+        {
+            await _dishesFoodSetsService.DeleteAsync(item.Id, cancellationToken);
+        }
         foreach (var item in dishes)
         {
             await _dishesFoodSetsService.CreateAsync(new DishFoodSet { Dish = item!, FoodSet = createdFoodSet!, }, cancellationToken);
         }
+       
         return NoContent();
     }
 

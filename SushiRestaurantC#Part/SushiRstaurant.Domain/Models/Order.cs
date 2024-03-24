@@ -1,4 +1,5 @@
 ﻿
+using SushiRestaurant.Constants;
 using System.ComponentModel.DataAnnotations.Schema;
 
 namespace SushiRstaurant.Domain.Models;
@@ -33,6 +34,12 @@ public class Order : Model
 
     public override object? SortBy(string sortColumn)
     {
-        throw new NotImplementedException();
+        return sortColumn switch
+        {
+            Constants.CostStringOrder => Cost,
+            Constants.DateTimeStringOrder => DateTime,
+            Constants.IdStringName => Id,
+            _ => Id
+        };
     }
 }

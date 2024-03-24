@@ -18,7 +18,13 @@ public sealed class OrderRepository : CrudRepository<Order>, IOrderRepository
 
     protected override IQueryable<Order> Sort(IQueryable<Order> query, string orderBy, bool isAscending)
     {
-        throw new NotImplementedException();
+        return orderBy switch
+        {
+            Constants.Constants.DateTimeStringOrder => isAscending ? query.OrderBy(m => m.DateTime) : query.OrderByDescending(m => m.DateTime),
+            Constants.Constants.CostStringOrder => isAscending ? query.OrderBy(m => m.Cost) : query.OrderByDescending(m => m.Cost),
+            Constants.Constants.IdStringName => isAscending ? query.OrderBy(m => m.Id) : query.OrderByDescending(m => m.Id),
+            _ => isAscending ? query.OrderBy(m => m.Id) : query.OrderByDescending(m => m.Id)
+        };
     }
 
 
