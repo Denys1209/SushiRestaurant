@@ -31,7 +31,7 @@ public sealed class UserRepository : CrudRepository<User>, IUserRepository
     {
         entity.Email = model.Email;
         entity.Username = model.Username;
-        entity.Password = model.Password;
+        entity.PasswordHash = model.PasswordHash;
     }
 }
 

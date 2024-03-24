@@ -5,6 +5,7 @@ namespace SushiRestaurant.Application.Users;
 
 public interface IUserService : ICrudService<User>
 {
-    Task CheckUserExistsAsync(string email, CancellationToken cancellationToken);
+    Task<bool> CheckUserExistsAsync(string email, CancellationToken cancellationToken);
+    Task<User?> ValidateUserAsync(string email, string password, CancellationToken cancellationToken);
 }
 

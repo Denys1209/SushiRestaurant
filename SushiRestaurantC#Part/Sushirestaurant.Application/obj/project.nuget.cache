@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "CNMENiGFiS59kFZDHzYWiMlJyIHkQ/aFZtzyDw0D+LIKFtSy7ng4qWJ5i5NsKh7T7FQVZsmQii2981jcJUUbnQ==",
+  "dgSpecHash": "5EU3oI8O5m7vHLU476h667ZMIC2Ri0jRlcPn7l3QrFKYKFIJjRdEI9cJKrdOfwO67jcdpQQRz4vBiff5EyHuKQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\Sushirestaurant.Application\\SushiRestaurant.Application.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

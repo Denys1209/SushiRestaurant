@@ -1,34 +1,37 @@
 ﻿using SushiRestaurant.Constants;
 using System.ComponentModel.DataAnnotations;
-using System.Xml.Linq;
 
 namespace SushiRstaurant.Domain.Models;
 
 public sealed class User : Model
 {
-    
+
 
     [Required]
     [EmailAddress]
     public string Email { get; set; }
 
     [Required]
-    [StringLength(100, MinimumLength = 6)]
-    public string Password { get; set; }
+    public string PasswordHash { get; set; }
 
     [Required]
     [StringLength(100, MinimumLength = 3)]
     public string Username { get; set; }
 
+    [Required]
+    [StringLength(100, MinimumLength = 3)]
+    public string Role { get; set; }
+
     public ICollection<UserDish> UserDishes { get; set; }
-    public User(string email, string password, string userName) 
+
+    public User(string email, string password, string userName, string role)
     {
         this.Email = email;
-        this.Password = password;
+        this.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
         this.Username = userName;
+        this.Role = role;
         this.UserDishes = new List<UserDish>();
     }
-
     public User() 
     {
         this.UserDishes = new List<UserDish>();

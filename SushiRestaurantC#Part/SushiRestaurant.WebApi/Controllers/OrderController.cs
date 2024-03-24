@@ -6,7 +6,6 @@ using SushiRestaurant.Application.Orders;
 using SushiRestaurant.Application.Users;
 using SushiRestaurant.WebApi.Dtos.OrderDishDtos;
 using SushiRestaurant.WebApi.Dtos.OrderDtos;
-using SushiRestaurant.WebApi.Dtos.UserDtos;
 using SushiRestaurant.WebApi.Filters.Validation;
 using SushiRstaurant.Domain;
 using SushiRstaurant.Domain.Models;

@@ -1,9 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "s7FF3E0ov36yJaI5dBq6CD7UHmC9fH5ceMQIq6/6TTpLO3BE1Lp3iNEgSqyMII5VWw5JUh6csmPC9kDnIraTfA==",
+  "dgSpecHash": "+naatAkPZxiZLWcvlLz71fTPoZSxG34vXGyAJbvfJKCFn9RDq3zF85T5gMWqzjGJCBy0cnCbn2go9ukqwPsxZQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\PC\\source\\repos\\Denys1209\\SushiRestaurant\\SushiRestaurantC#Part\\SushiRestaurant.EfPersistence\\SushiRestaurant.EfPersistence.csproj",
   "expectedPackageFiles": [
+    "C:\\Users\\PC\\.nuget\\packages\\bcrypt.net-next\\4.0.3\\bcrypt.net-next.4.0.3.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.entityframeworkcore\\8.0.0\\microsoft.entityframeworkcore.8.0.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\8.0.0\\microsoft.entityframeworkcore.abstractions.8.0.0.nupkg.sha512",
     "C:\\Users\\PC\\.nuget\\packages\\microsoft.entityframeworkcore.analyzers\\8.0.0\\microsoft.entityframeworkcore.analyzers.8.0.0.nupkg.sha512",
