@@ -5,11 +5,11 @@ using SushiRestaurant.Application.DIshesFoodSets;
 using SushiRestaurant.Application.FoodSets;
 using SushiRestaurant.Application.OrderDishes;
 using SushiRestaurant.Application.Orders;
-using SushiRestaurant.Application.Shared;
 using SushiRestaurant.Application.UserDishes;
 using SushiRestaurant.Application.Users;
 using SushiRestaurant.EfPersistence.Data;
 using SushiRestaurant.EfPersistence.Repositories;
+using SushiRestaurant.WebApi.EmailService;
 
 namespace SushiRestaurant.WebApi.Extensions;
 
@@ -38,6 +38,9 @@ public static class DependencyInjectionExtensions
         services.AddTransient<IOrderService, OrderService>();
         services.AddTransient<IOrderDishService, OrderDishService>();
         services.AddTransient<IUserDishService, UserDishService>();
+
+
+        services.AddTransient<IEmailSender, EmailSender>();
         
     }
 }

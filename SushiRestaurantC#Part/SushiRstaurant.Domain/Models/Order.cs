@@ -10,11 +10,11 @@ public class Order : Model
 
 
     [ForeignKey("UserId")]
-    public required User User { get; set; }
+    public required User? User { get; set; }
     public DateTime DateTime { get; set; }
     public ICollection<OrderDish> OrderDishes { get; set; }
 
-    public Order(decimal cost, User user, DateTime dateTime) 
+    public Order(decimal cost, DateTime dateTime, User? user) 
     {
         this.Cost = cost;
         this.User = user;

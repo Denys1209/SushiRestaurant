@@ -22,19 +22,37 @@ public sealed class User : Model
     [StringLength(100, MinimumLength = 3)]
     public string Role { get; set; }
 
+    [Required]
+    public string VerifyToken { get; set; }
+
+    [Required]
+    public bool IsVerify { get; set; }
+
+    public string? PasswordResetToken { get; set; }
+    public DateTime? ResetTokenExpires { get; set; }
+
+    public DateTime VerifiedAt;
+
+
+    [Required]
+    public DateTime RegistrationDateTime { get; set; }
     public ICollection<UserDish> UserDishes { get; set; }
 
-    public User(string email, string password, string userName, string role)
+    public User(string email, string password, string userName, string role, string verifyToken, DateTime registrationDateTime)
     {
         this.Email = email;
         this.PasswordHash = BCrypt.Net.BCrypt.HashPassword(password);
         this.Username = userName;
         this.Role = role;
         this.UserDishes = new List<UserDish>();
+        this.VerifyToken = verifyToken;
+        this.RegistrationDateTime = registrationDateTime;
+        this.IsVerify = false;
     }
     public User() 
     {
         this.UserDishes = new List<UserDish>();
+        this.IsVerify = false;
     }
     public override bool IsMatch(string searchTerm)
     {

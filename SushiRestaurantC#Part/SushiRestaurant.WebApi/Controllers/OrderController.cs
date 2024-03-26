@@ -91,14 +91,18 @@ public class OrderController : Controller
     }
 
     [HttpPut("{id:int}")]
-    public async Task<IActionResult> Put([FromQuery] int userId, [FromQuery] List<int> dishesId, [FromQuery] List<uint> dishesQuantity, [FromBody] CreateOrderDto dto, CancellationToken cancellationToken)
+    public async Task<IActionResult> Put([FromQuery] int? userId, [FromQuery] List<int> dishesId, [FromQuery] List<uint> dishesQuantity, [FromBody] CreateOrderDto dto, CancellationToken cancellationToken)
     {
         var order = _mapper.Map<Order>(dto);
-        var user = await _userService.GetAsync(userId, cancellationToken);
-        if (user is null)
+        User? user = null;
+        if (userId != null)
         {
-            ModelState.AddModelError("", $"User with {userId} id doesn't exist");
-            return StatusCode(422, ModelState);
+            user = await _userService.GetAsync((int)userId, cancellationToken);
+            if (user is null)
+            {
+                ModelState.AddModelError("", $"User with {userId} id doesn't exist");
+                return StatusCode(422, ModelState);
+            }
         }
         order.User = user;
         var dishes = (await _dishService.GetAllModelsByIdsAsync(dishesId, cancellationToken)).ToArray();
