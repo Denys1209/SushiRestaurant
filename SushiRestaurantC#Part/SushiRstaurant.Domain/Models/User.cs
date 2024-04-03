@@ -31,7 +31,7 @@ public sealed class User : Model
     public string? PasswordResetToken { get; set; }
     public DateTime? ResetTokenExpires { get; set; }
 
-    public DateTime VerifiedAt;
+    public DateTime? VerifiedAt;
 
 
     [Required]

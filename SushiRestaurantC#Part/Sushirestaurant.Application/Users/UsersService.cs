@@ -20,7 +20,7 @@ public sealed class UsersService : CrudService<User>, IUserService
     public async Task<User?> ValidateUserAsync(string email, string password, CancellationToken cancellationToken)
     {
         var user = (await _repository.GetAllAsync(cancellationToken)).FirstOrDefault(user => user.Email == email);
-        if (user == null)
+        if (user == null || !user.IsVerify)
         {
             return null;
         }
@@ -47,6 +47,7 @@ public sealed class UsersService : CrudService<User>, IUserService
         {
             user.IsVerify = true;
             user.VerifiedAt = DateTime.Now;
+            await _repository.UpdateAsync(user, cancellationToken);
             return user;
         }
         else
@@ -65,6 +66,7 @@ public sealed class UsersService : CrudService<User>, IUserService
 
         user.PasswordResetToken = CreateRandomToken();
         user.ResetTokenExpires = DateTime.Now.AddDays(1);
+        await _repository.UpdateAsync(user, cancellationToken);
         return user;
     }
 
@@ -86,6 +88,7 @@ public sealed class UsersService : CrudService<User>, IUserService
             user.PasswordHash = BCrypt.Net.BCrypt.HashPassword(newPassword);
             user.PasswordResetToken = null;
             user.ResetTokenExpires = null;
+            await _repository.UpdateAsync(user, cancellationToken);
             return user;
         }
         else 

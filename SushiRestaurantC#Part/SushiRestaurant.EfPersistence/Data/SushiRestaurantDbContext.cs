@@ -45,5 +45,8 @@ public class SushiRestaurantDbContext : DbContext
         modelBuilder.Entity<FoodSet>().Navigation(e => e.DishFoodSets).AutoInclude();
         modelBuilder.Entity<User>().Navigation(e => e.UserDishes).AutoInclude();
         modelBuilder.Entity<Order>().Navigation(e => e.OrderDishes).AutoInclude();
+        modelBuilder.Entity<Order>().Navigation(e => e.User).AutoInclude();
+        modelBuilder.Entity<UserDish>().Navigation(e => e.Dish).AutoInclude();
+        modelBuilder.Entity<UserDish>().Navigation(e => e.User).AutoInclude();
     }
 }

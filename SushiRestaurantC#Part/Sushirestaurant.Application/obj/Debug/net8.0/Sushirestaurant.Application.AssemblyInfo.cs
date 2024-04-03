@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("SushiRestaurant.Application")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+4f8ec81a82b529e6a6b2bee434db753fffb6b395")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+a1050a24d31f39b23adcf862ca334d4be939b55a")]
 [assembly: System.Reflection.AssemblyProductAttribute("SushiRestaurant.Application")]
 [assembly: System.Reflection.AssemblyTitleAttribute("SushiRestaurant.Application")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

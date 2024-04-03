@@ -12,14 +12,17 @@ public class Order : Model
     [ForeignKey("UserId")]
     public required User? User { get; set; }
     public DateTime DateTime { get; set; }
+
+    public required string PhoneNumber { get; set; }
     public ICollection<OrderDish> OrderDishes { get; set; }
 
-    public Order(decimal cost, DateTime dateTime, User? user) 
+    public Order(decimal cost, DateTime dateTime,string phoneNumber, User? user)
     {
         this.Cost = cost;
         this.User = user;
         this.DateTime = dateTime;
         this.OrderDishes = new List<OrderDish>();
+        this.PhoneNumber = phoneNumber;
     }
 
     public Order() 

@@ -1,19 +1,20 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Identity.Data;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.IdentityModel.Tokens;
+using SushiRestaurant.Application.Dishes;
+using SushiRestaurant.Application.UserDishes;
 using SushiRestaurant.Application.Users;
 using SushiRestaurant.WebApi.Dtos.UserDtos;
-using SushiRstaurant.Domain.Models;
+using SushiRestaurant.WebApi.EmailService;
 using SushiRstaurant.Domain;
-using SushiRestaurant.Application.UserDishes;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.IdentityModel.Tokens;
+using SushiRstaurant.Domain.Models;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
-using System.Text;
 using System.Security.Cryptography;
-using Microsoft.AspNetCore.Identity.Data;
-using SushiRestaurant.WebApi.EmailService;
-using SushiRestaurant.Application.Dishes;
+using System.Text;
+using System.Web;
 
 namespace SushiRestaurant.WebApi.Controllers;
 public class UserController : Controller
@@ -71,16 +72,19 @@ public class UserController : Controller
         }
         var result = await _userService.CreateAsync(user, cancellation);
 
-        _emailSender.SendEmail(new EmailSendRequest {
-            Content = token,
-            Subject = "Registration",
+        string verificationLink = GenerateVerificationLink(model.Email, token);
+
+        _emailSender.SendEmail(new EmailSendRequest
+        {
+            Content = $"Please verify your account by clicking the following link: {verificationLink}",
+            Subject = "Account Verification",
             To = model.Email,
         });
 
         return Ok(new { message = "User registered successfully" });
     }
 
-    [HttpPost("verify")]
+    [HttpGet("verify")]
     public async Task<IActionResult> Verify(string email, string token, CancellationToken cancellation)
     {
         var user = await _userService.VerifyUser(email, token, cancellation);
@@ -150,7 +154,7 @@ public class UserController : Controller
         var user = await _userService.ValidateUserAsync(model.Email, model.Password, cancellationToken);
         if (user is null)
         {
-            return Unauthorized();
+            return BadRequest("User doesn't exsist or isn't verify");
         }
 
         var tokenOptions = _configuration.GetSection("TokenOptions").Get<TokenOptions>();
@@ -169,27 +173,63 @@ public class UserController : Controller
         var tokenHandler = new JwtSecurityTokenHandler();
         var token = tokenHandler.CreateToken(tokenDescriptor);
 
-        return Ok(new { token = tokenHandler.WriteToken(token), id = user.Id });
+        var favoriteDishesIds = await _userDishService.GetAllFavoriteDishesIdOfUserAsync(user, cancellationToken);
+        LoginResualtUserDto loginResualtUserDto = new LoginResualtUserDto
+        {
+            Email = user.Email,
+            Id = user.Id,
+            Token = tokenHandler.WriteToken(token),
+            Username = user.Username,
+            FavoriteDishesIds = (ICollection<int>)favoriteDishesIds,
+        };
+        return Ok(loginResualtUserDto);
     }
 
-    [HttpPost]
-    public async Task<IActionResult> AddFavoriteDish(int userId, int dishId, CancellationToken cancellationToken ) 
+    [HttpPost("addFavoriteDish")]
+    public async Task<IActionResult> AddFavoriteDish(int userId, int dishId, CancellationToken cancellationToken)
     {
         var user = await _userService.GetAsync(userId, cancellationToken);
-        if (user is null) 
+        if (user is null)
         {
             return BadRequest($"User with {userId} doesn't exist");
         }
 
         var dish = await _dishService.GetAsync(dishId, cancellationToken);
-        if (dish is null) 
+        if (dish is null)
         {
             return BadRequest($"Dish with {dishId} doesn't exist");
         }
 
-        var result = _userDishService.CreateAsync(new UserDish { Dish = dish, User = user }, cancellationToken);
+        var result = await _userDishService.CreateAsync(new UserDish { Dish = dish, User = user }, cancellationToken);
 
         return Ok(result);
+    }
+
+    [HttpDelete("deleteFavoriteDish")]
+    public async Task<IActionResult> DeleteFavoriteDish(int userId, int dishId, CancellationToken cancellationToken)
+    {
+        var user = await _userService.GetAsync(userId, cancellationToken);
+        if (user is null)
+        {
+            return BadRequest($"User with {userId} doesn't exist");
+        }
+
+        var dish = await _dishService.GetAsync(dishId, cancellationToken);
+        if (dish is null)
+        {
+            return BadRequest($"Dish with {dishId} doesn't exist");
+        }
+
+        try
+        {
+            await _userDishService.DeleteFavoriteDishAsync(user, dish, cancellationToken);
+            return Ok("favorite dish deleted");
+        }
+        catch (Exception ex) 
+        {
+            return BadRequest("Something went wrong during deleting");
+        }
+
     }
 
 
@@ -198,4 +238,16 @@ public class UserController : Controller
     {
         return Convert.ToHexString(RandomNumberGenerator.GetBytes(3));
     }
+
+    private string GenerateVerificationLink(string email, string token)
+    {
+        string baseUrl = "https://localhost:7073";
+
+        string verifyPath = "/api/user/verify";
+
+        string verificationLink = $"{baseUrl}{verifyPath}?email={HttpUtility.UrlEncode(email)}&token={HttpUtility.UrlEncode(token)}";
+
+        return verificationLink;
+    }
+
 }

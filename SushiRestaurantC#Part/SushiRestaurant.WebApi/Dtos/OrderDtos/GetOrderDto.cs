@@ -12,8 +12,9 @@ public class GetOrderDto
 
 
     [ForeignKey("UserId")]
-    public required User User { get; set; }
+    public required User? User { get; set; }
     public DateTime DateTime { get; set; }
+    public required string PhoneNumber { get; set; }
 
     public required ICollection<GetOrderDishDto> OrderDishDtos { get; set; }
 }

@@ -7,6 +7,8 @@ using AutoMapper;
 using SushiRestaurant.Application.Categories;
 using SushiRestaurant.WebApi.Dtos.Dish;
 using SushiRestaurant.WebApi.Dtos.Categories;
+using SushiRestaurant.Application.UserDishes;
+using SushiRestaurant.Application.Users;
 
 namespace SushiRestaurant.WebApi.Controllers;
 
@@ -14,12 +16,16 @@ public class DishesController : Controller
 {
     private readonly IDishService _dishService;
     private readonly ICategoryService _categoryService;
+    private readonly IUserDishService _userDishService;
+    private readonly IUserService _userService;
     private readonly IMapper _mapper;
 
-    public DishesController(IDishService dishService, ICategoryService categoryService, IMapper mapper)
+    public DishesController(IDishService dishService, ICategoryService categoryService, IUserDishService userDishService, IUserService userService,   IMapper mapper)
     {
         _dishService = dishService;
         _categoryService = categoryService;
+        _userDishService = userDishService;
+        _userService = userService;
         _mapper = mapper;
     }
 
@@ -96,6 +102,15 @@ public class DishesController : Controller
 
         var dishDtos = _mapper.Map<List<GetDishDto>>(dishes);
         return Ok(dishDtos);
+    }
+
+    [HttpGet("favoriteDishes")]
+    public async Task<IActionResult> GetAllFavoriteDishesForUser([FromQuery] int id, CancellationToken cancellationToken) 
+    {
+        var user = await _userService.GetAsync(id, cancellationToken);
+        if (user == null) return NotFound();
+        var favoriteDishes = _mapper.Map<List<GetDishDto>>(await _userDishService.GetAllFavoriteDishesOfUserAsync(user, cancellationToken));
+        return Ok(favoriteDishes);
     }
 
 }

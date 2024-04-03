@@ -10,7 +10,7 @@ public class DishService : CrudService<Dish>, IDishService
     {
     }
 
-    public async Task<IReadOnlyCollection<Dish>> getAllDishesByCategoryAsync(Category category, CancellationToken cancellationToken)
+    public async Task<IReadOnlyCollection<Dish>> GetAllDishesByCategoryAsync(Category category, CancellationToken cancellationToken)
     {
         return (await _repository.GetAllAsync(cancellationToken)).Where(e => e.Category == category).ToArray();
     }
@@ -29,4 +29,5 @@ public class DishService : CrudService<Dish>, IDishService
 
     }
 
-   }
+   
+}

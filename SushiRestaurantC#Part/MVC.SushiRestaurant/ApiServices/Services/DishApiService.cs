@@ -50,7 +50,7 @@ public class DishApiService : IDishService
         return await response.Content.ReadFromJsonAsync<IReadOnlyCollection<Dish>>(cancellationToken);
     }
 
-    public Task<IReadOnlyCollection<Dish>> getAllDishesByCategoryAsync(Category category, CancellationToken cancellationToken)
+    public Task<IReadOnlyCollection<Dish>> GetAllDishesByCategoryAsync(Category category, CancellationToken cancellationToken)
     {
         throw new NotImplementedException();
     }

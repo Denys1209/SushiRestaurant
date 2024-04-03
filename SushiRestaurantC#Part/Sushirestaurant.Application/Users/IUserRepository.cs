@@ -6,4 +6,5 @@ namespace SushiRestaurant.Application.Users;
 
 public interface IUserRepository : ICrudRepository<User>
 {
+    
 }

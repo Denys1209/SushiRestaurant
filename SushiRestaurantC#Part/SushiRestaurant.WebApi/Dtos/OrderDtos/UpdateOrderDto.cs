@@ -11,6 +11,8 @@ public class UpdateOrderDto
 
 
     [ForeignKey("UserId")]
-    public required User User { get; set; }
+    public required User? User { get; set; }
+
+    public required string PhoneNumber;
     public DateTime DateTime { get; set; }
 }
