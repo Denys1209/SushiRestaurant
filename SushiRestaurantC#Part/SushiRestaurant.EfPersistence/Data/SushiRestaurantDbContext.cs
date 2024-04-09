@@ -10,6 +10,10 @@ public class SushiRestaurantDbContext : DbContext
     public DbSet<Dish> Dishes { get; set; }
     public DbSet<FoodSet> FoodSets { get; set; }
     public DbSet<DishFoodSet> DishFoodSets { get; set; }
+    public DbSet<User> Users { get; set; }
+    public DbSet<UserDish> UserDishes { get; set; }
+    public DbSet<Order> Orders { get; set; }
+    public DbSet<OrderDish> OrderDishes { get; set; }
 
 
     public SushiRestaurantDbContext(DbContextOptions<SushiRestaurantDbContext> options) : base(options)

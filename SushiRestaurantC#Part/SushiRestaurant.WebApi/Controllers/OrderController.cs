@@ -58,6 +58,8 @@ public class OrderController : Controller
     [ValidationFilter]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
+
+    [HttpPost("createOrder")]
     public async Task<IActionResult> Post([FromQuery] int? userId, [FromQuery] List<int> dishesId, [FromQuery] List<uint> dishesQuantity, [FromBody] CreateOrderDto dto, CancellationToken cancellationToken)
     {
         var order = _mapper.Map<Order>(dto);
@@ -85,8 +87,8 @@ public class OrderController : Controller
             }
         }
         var id = await _orderService.CreateAsync(order, cancellationToken);
-        var createdFoodSet = await _orderService.GetAsync(id, cancellationToken);
-        if (createdFoodSet is null)
+        var createdOrder = await _orderService.GetAsync(id, cancellationToken);
+        if (createdOrder is null)
         {
             ModelState.AddModelError("", $"Order wasn't created");
             return StatusCode(422, ModelState);

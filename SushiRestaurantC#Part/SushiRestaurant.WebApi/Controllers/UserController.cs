@@ -188,6 +188,7 @@ public class UserController : Controller
     [HttpPost("addFavoriteDish")]
     public async Task<IActionResult> AddFavoriteDish(int userId, int dishId, CancellationToken cancellationToken)
     {
+
         var user = await _userService.GetAsync(userId, cancellationToken);
         if (user is null)
         {
@@ -220,15 +221,8 @@ public class UserController : Controller
             return BadRequest($"Dish with {dishId} doesn't exist");
         }
 
-        try
-        {
-            await _userDishService.DeleteFavoriteDishAsync(user, dish, cancellationToken);
-            return Ok("favorite dish deleted");
-        }
-        catch (Exception ex) 
-        {
-            return BadRequest("Something went wrong during deleting");
-        }
+        await _userDishService.DeleteFavoriteDishAsync(user, dish, cancellationToken);
+        return Ok("favorite dish deleted");
 
     }
 

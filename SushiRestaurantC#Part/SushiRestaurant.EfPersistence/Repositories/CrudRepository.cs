@@ -23,7 +23,7 @@ public abstract class CrudRepository<TModel> : ICrudRepository<TModel> where TMo
 
     public async Task UpdateAsync(TModel model, CancellationToken cancellationToken)
     {
-        var entity = await DbContext.Set<TModel>().FindAsync(model.Id);
+        var entity = await DbContext.Set<TModel>().FirstOrDefaultAsync(e => e.Id == model.Id);
         if (entity is null)
             return;
 
@@ -33,7 +33,7 @@ public abstract class CrudRepository<TModel> : ICrudRepository<TModel> where TMo
 
     public async Task DeleteAsync(int id, CancellationToken cancellationToken)
     {
-        var entity = await DbContext.Set<TModel>().FindAsync(id);
+        var entity = await DbContext.Set<TModel>().FirstOrDefaultAsync(e => e.Id == id);
         if (entity is null)
             return;
 
@@ -43,7 +43,7 @@ public abstract class CrudRepository<TModel> : ICrudRepository<TModel> where TMo
 
     public async Task<TModel?> GetAsync(int id, CancellationToken cancellationToken)
     {
-        return await DbContext.Set<TModel>().FindAsync(id);
+        return await DbContext.Set<TModel>().FirstOrDefaultAsync(e => e.Id == id);
     }
 
     public async Task<PaginatedCollection<TModel>> GetAllAsync(FilterPaginationDto dto, CancellationToken cancellationToken)

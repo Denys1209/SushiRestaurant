@@ -1,4 +1,5 @@
-﻿using SushiRestaurant.Application.DIshesFoodSets;
+﻿using Microsoft.EntityFrameworkCore;
+using SushiRestaurant.Application.DIshesFoodSets;
 using SushiRestaurant.Application.UserDishes;
 using SushiRestaurant.EfPersistence.Data;
 using SushiRstaurant.Domain.Models;
@@ -10,7 +11,7 @@ public class UserDishRepository : CrudRepository<UserDish>, IUserDishRepository
     {
     }
 
-    protected override IQueryable<UserDish> Filter(IQueryable<UserDish> query, string filter)
+        protected override IQueryable<UserDish> Filter(IQueryable<UserDish> query, string filter)
     {
         throw new NotImplementedException();
     }
