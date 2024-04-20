@@ -5,6 +5,7 @@ using SushiRstaurant.Domain.Models;
 using SushiRstaurant.Domain;
 using AutoMapper;
 using SushiRestaurant.WebApi.Dtos.Categories;
+using SushiRestaurant.WebApi.Dtos.CategoryDtos;
 
 namespace SushiRestaurant.WebApi.Controllers;
 
@@ -23,7 +24,10 @@ public class CategoriesController : Controller
     public async Task<IActionResult> Get([FromQuery] FilterPaginationDto paginationDto, CancellationToken cancellationToken)
     {
         var categories = _mapper.Map<List<GetCategoryDto>>(await _categoryService.GetAllAsync(paginationDto, cancellationToken));
-        return Ok(categories);
+        var numberOfPages = await _categoryService.GetNumberOfPagesAsync(paginationDto.PageSize, cancellationToken);
+        return Ok(
+            new ReturnPageDto { categories=categories, HowManyPages=numberOfPages }
+            );
     }
 
     [HttpGet("{id:int}")]

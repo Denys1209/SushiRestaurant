@@ -83,6 +83,36 @@ public class UserController : Controller
 
         return Ok(new { message = "User registered successfully" });
     }
+    [HttpPost("registerAdmin")]
+    public async Task<IActionResult> RegisterAdmin([FromBody] CreateUserDto model, CancellationToken cancellation)
+    {
+
+        string token = CreateRandomToken();
+        var user = new User(
+            model.Email,
+            model.Password,
+            model.Username,
+            Constants.Constants.AdminRoleString,
+            token,
+            DateTime.Now
+        );
+        if (await _userService.CheckUserExistsAsync(model.Email, cancellation))
+        {
+            return BadRequest("User already exist");
+        }
+        var result = await _userService.CreateAsync(user, cancellation);
+
+        string verificationLink = GenerateVerificationLink(model.Email, token);
+
+        _emailSender.SendEmail(new EmailSendRequest
+        {
+            Content = $"Please verify your account by clicking the following link: {verificationLink}",
+            Subject = "Account Verification",
+            To = model.Email,
+        });
+
+        return Ok(new { message = "User registered successfully" });
+    }
 
     [HttpGet("verify")]
     public async Task<IActionResult> Verify(string email, string token, CancellationToken cancellation)
@@ -164,7 +194,7 @@ public class UserController : Controller
         {
             Subject = new ClaimsIdentity(new[]
             {
-                new Claim(ClaimTypes.Name, user.Username)
+                new Claim(ClaimTypes.Role, user.Role)
             }),
             Expires = DateTime.UtcNow.AddDays(1),
             SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

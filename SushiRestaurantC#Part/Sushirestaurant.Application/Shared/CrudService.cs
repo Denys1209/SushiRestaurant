@@ -48,5 +48,8 @@ public abstract class CrudService<TModel> : ICrudService<TModel> where TModel : 
         await _repository.UpdateAsync(model, cancellationToken);
     }
 
-
+    public async Task<int> GetNumberOfPagesAsync(int sizeOfPage, CancellationToken cancellationToken)
+    {
+        return await _repository.GetNumberOfPagesAsync(sizeOfPage, cancellationToken);
+    }
 }

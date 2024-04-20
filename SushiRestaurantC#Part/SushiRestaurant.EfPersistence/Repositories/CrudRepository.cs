@@ -85,11 +85,16 @@ public abstract class CrudRepository<TModel> : ICrudRepository<TModel> where TMo
     {
         return await DbContext.Set<OrderDish>().Include(m => m.Dish).Include(m => m.Order).ToArrayAsync(cancellationToken);
     }
+
+    public async Task<int> GetNumberOfPagesAsync(int sizeOfPage, CancellationToken cancellationToken)
+    {
+        return (int)Math.Ceiling((double)DbContext.Set<TModel>().Count() / sizeOfPage);
+    }
     protected abstract void Update(TModel model, TModel entity);
 
     protected abstract IQueryable<TModel> Filter(IQueryable<TModel> query, string filter);
 
     protected abstract IQueryable<TModel> Sort(IQueryable<TModel> query, string orderBy, bool isAscending);
 
-    
+
 }
