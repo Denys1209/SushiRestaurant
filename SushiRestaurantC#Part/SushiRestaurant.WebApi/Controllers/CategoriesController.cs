@@ -26,7 +26,7 @@ public class CategoriesController : Controller
         var categories = _mapper.Map<List<GetCategoryDto>>(await _categoryService.GetAllAsync(paginationDto, cancellationToken));
         var numberOfPages = await _categoryService.GetNumberOfPagesAsync(paginationDto.PageSize, cancellationToken);
         return Ok(
-            new ReturnPageDto { categories=categories, HowManyPages=numberOfPages }
+            new ReturnCategoryPageDto { categories=categories, HowManyPages=numberOfPages }
             );
     }
 

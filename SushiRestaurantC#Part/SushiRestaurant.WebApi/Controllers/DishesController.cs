@@ -6,9 +6,9 @@ using SushiRestaurant.Application.Dishes;
 using AutoMapper;
 using SushiRestaurant.Application.Categories;
 using SushiRestaurant.WebApi.Dtos.Dish;
-using SushiRestaurant.WebApi.Dtos.Categories;
 using SushiRestaurant.Application.UserDishes;
 using SushiRestaurant.Application.Users;
+using SushiRestaurant.WebApi.Dtos.DishDtos;
 
 namespace SushiRestaurant.WebApi.Controllers;
 
@@ -20,7 +20,7 @@ public class DishesController : Controller
     private readonly IUserService _userService;
     private readonly IMapper _mapper;
 
-    public DishesController(IDishService dishService, ICategoryService categoryService, IUserDishService userDishService, IUserService userService,   IMapper mapper)
+    public DishesController(IDishService dishService, ICategoryService categoryService, IUserDishService userDishService, IUserService userService, IMapper mapper)
     {
         _dishService = dishService;
         _categoryService = categoryService;
@@ -33,7 +33,8 @@ public class DishesController : Controller
     public async Task<IActionResult> Get([FromQuery] FilterPaginationDto paginationDto, CancellationToken cancellationToken)
     {
         var dishes = _mapper.Map<List<GetDishDto>>(await _dishService.GetAllAsync(paginationDto, cancellationToken));
-        return Ok(dishes);
+        var numberOfPages = await _dishService.GetNumberOfPagesAsync(paginationDto.PageSize, cancellationToken);
+        return Ok(new ReturnDishPageDto { Dishes = dishes, HowManyPages = numberOfPages });
     }
 
     [HttpGet("{id:int}")]
@@ -67,7 +68,7 @@ public class DishesController : Controller
 
         var dish = _mapper.Map<Dish>(dto);
         Category? category = await _categoryService.GetAsync(categoryId, cancellationToken);
-        if (category is null) 
+        if (category is null)
         {
             ModelState.AddModelError("", $"dish with the {categoryId} id deosn't exist");
             return StatusCode(422, ModelState);
@@ -105,7 +106,7 @@ public class DishesController : Controller
     }
 
     [HttpGet("favoriteDishes")]
-    public async Task<IActionResult> GetAllFavoriteDishesForUser([FromQuery] int id, CancellationToken cancellationToken) 
+    public async Task<IActionResult> GetAllFavoriteDishesForUser([FromQuery] int id, CancellationToken cancellationToken)
     {
         var user = await _userService.GetAsync(id, cancellationToken);
         if (user == null) return NotFound();

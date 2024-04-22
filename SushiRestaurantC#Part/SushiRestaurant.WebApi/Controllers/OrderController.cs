@@ -40,8 +40,9 @@ public class OrderController : Controller
                 order.User = (await _userService.GetAsync(order.User.Id, cancellationToken))!;
             }
         }
+        int howManyPages = await _orderService.GetNumberOfPagesAsync(paginationDto.PageSize, cancellationToken);
 
-        return Ok(orders);
+        return Ok(new ReturnOrderPageDto { HowManyPages = howManyPages, Orders=orders });
     }
 
     [HttpGet("{id:int}")]

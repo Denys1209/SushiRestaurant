@@ -40,7 +40,15 @@ public class UserController : Controller
     public async Task<IActionResult> GetAll([FromQuery] FilterPaginationDto paginationDto, CancellationToken cancellationToken)
     {
         var users = _mapper.Map<List<GetUserDto>>(await _userService.GetAllAsync(paginationDto, cancellationToken));
-        return Ok(users);
+        int howManyPage = await _userService.GetNumberOfPagesAsync(paginationDto.PageSize, cancellationToken);
+        return Ok(
+            new ReturnUserPageDto()
+            {
+                HowManyPages = howManyPage,
+                Users = users,
+            }
+
+        );
     }
 
     [HttpGet("{id:int}")]
