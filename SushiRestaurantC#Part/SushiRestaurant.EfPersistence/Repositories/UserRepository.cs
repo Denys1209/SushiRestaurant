@@ -32,6 +32,8 @@ public sealed class UserRepository : CrudRepository<User>, IUserRepository
         entity.Email = model.Email;
         entity.Username = model.Username;
         entity.PasswordHash = model.PasswordHash;
+        entity.IsVerify = model.IsVerify;
+        entity.Role = model.Role;
     }
 }
 

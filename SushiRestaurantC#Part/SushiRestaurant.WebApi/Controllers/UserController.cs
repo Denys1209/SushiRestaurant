@@ -168,6 +168,12 @@ public class UserController : Controller
     public async Task<IActionResult> Put([FromBody] UpdateUserDto dto, CancellationToken cancellationToken)
     {
         var user = _mapper.Map<User>(dto);
+        var userWithPassword = await _userService.GetAsync(dto.Id, cancellationToken);
+        if (userWithPassword == null) 
+        {
+            return BadRequest($"user with {dto.Id} doesn't exist");
+        }
+        user.PasswordHash = userWithPassword.PasswordHash;
         await _userService.UpdateAsync(user, cancellationToken);
         return NoContent();
     }
@@ -219,6 +225,8 @@ public class UserController : Controller
             Token = tokenHandler.WriteToken(token),
             Username = user.Username,
             FavoriteDishesIds = (ICollection<int>)favoriteDishesIds,
+            IsVerify = user.IsVerify,
+            Role = user.Role,
         };
         return Ok(loginResualtUserDto);
     }

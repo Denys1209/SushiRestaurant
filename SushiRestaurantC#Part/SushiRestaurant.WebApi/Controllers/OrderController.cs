@@ -6,6 +6,7 @@ using SushiRestaurant.Application.Orders;
 using SushiRestaurant.Application.Users;
 using SushiRestaurant.WebApi.Dtos.OrderDishDtos;
 using SushiRestaurant.WebApi.Dtos.OrderDtos;
+using SushiRestaurant.WebApi.Dtos.UserDtos;
 using SushiRestaurant.WebApi.Filters.Validation;
 using SushiRstaurant.Domain;
 using SushiRstaurant.Domain.Models;
@@ -37,7 +38,7 @@ public class OrderController : Controller
             order.OrderDishDtos = _mapper.Map<List<GetOrderDishDto>>(await _orderDishService.GetAllOrderDishesInOrderIdAsync(order.Id, cancellationToken));
             if (order.User != null)
             {
-                order.User = (await _userService.GetAsync(order.User.Id, cancellationToken))!;
+                order.User = _mapper.Map<GetUserDto>(await _userService.GetAsync(order.User.Id, cancellationToken))!;
             }
         }
         int howManyPages = await _orderService.GetNumberOfPagesAsync(paginationDto.PageSize, cancellationToken);

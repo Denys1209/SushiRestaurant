@@ -54,5 +54,7 @@ public sealed class DishRepository : CrudRepository<Dish>, IDishRepository
         entity.Name = model.Name;
         entity.Cost = model.Cost;
         entity.Description = model.Description;
+        entity.Category = model.Category;
+        entity.ImageURL = model.ImageURL;
     }
 }

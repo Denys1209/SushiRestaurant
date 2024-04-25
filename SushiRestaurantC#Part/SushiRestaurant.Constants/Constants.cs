@@ -29,6 +29,8 @@ static public class Constants
     public const string UserNameStringUser = "UserName";
     public const string EmailStringUser = "Email";
     public const string PasswordStringUser = "Password";
+    public const string IsVerifyStringUser = "IsVerify";
+    public const string RoleStringUser = "Role";
     public const string UserRoleString = "User";
     public const string AdminRoleString = "Admin";
 

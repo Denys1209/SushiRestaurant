@@ -64,6 +64,8 @@ public sealed class User : Model
         return sortColumn switch
         {
             Constants.UserNameStringUser => Username,
+            Constants.IsVerifyStringUser => IsVerify,
+            Constants.RoleStringUser => Role,
             Constants.EmailStringUser => Email,
             Constants.IdStringName => Id,
             _ => Id

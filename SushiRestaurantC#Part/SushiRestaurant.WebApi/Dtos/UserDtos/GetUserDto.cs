@@ -16,7 +16,7 @@ public class GetUserDto
     [Required(ErrorMessage = "Username is required")]
     [StringLength(100, MinimumLength = 3)]
     public required string Username { get; set; }
-
-
+    public required bool IsVerify { get; set; }
+    public required string Role { get; set; }
 
 }

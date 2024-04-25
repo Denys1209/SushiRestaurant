@@ -19,4 +19,6 @@ public class UpdateDishDto
 
     [Required(ErrorMessage = "Cost is required")]
     public decimal Cost { get; set; }
+
+    public int CategoryId { get; set; }
 }

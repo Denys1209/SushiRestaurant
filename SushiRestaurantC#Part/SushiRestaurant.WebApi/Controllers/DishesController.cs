@@ -59,7 +59,7 @@ public class DishesController : Controller
 
 
 
-    [HttpPost]
+    [HttpPost("createDish")]
     [ValidationFilter]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
@@ -70,7 +70,7 @@ public class DishesController : Controller
         Category? category = await _categoryService.GetAsync(categoryId, cancellationToken);
         if (category is null)
         {
-            ModelState.AddModelError("", $"dish with the {categoryId} id deosn't exist");
+            ModelState.AddModelError("", $"category with the {categoryId} id deosn't exist");
             return StatusCode(422, ModelState);
         }
         dish.Category = category;
@@ -81,8 +81,14 @@ public class DishesController : Controller
     [HttpPut]
     public async Task<IActionResult> Put([FromBody] UpdateDishDto dto, CancellationToken cancellationToken)
     {
-
+        Category? category = await _categoryService.GetAsync(dto.CategoryId, cancellationToken);
+        if (category is null) 
+        {
+            ModelState.AddModelError("", $"category with the {dto.CategoryId} id deosn't exist");
+            return StatusCode(422, ModelState);
+        }
         var dish = _mapper.Map<Dish>(dto);
+        dish.Category = category;
         await _dishService.UpdateAsync(dish, cancellationToken);
         return NoContent();
     }

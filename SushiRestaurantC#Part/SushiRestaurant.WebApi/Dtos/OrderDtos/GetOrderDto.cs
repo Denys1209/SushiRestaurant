@@ -1,4 +1,5 @@
 ﻿using SushiRestaurant.WebApi.Dtos.OrderDishDtos;
+using SushiRestaurant.WebApi.Dtos.UserDtos;
 using SushiRstaurant.Domain.Models;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -12,7 +13,7 @@ public class GetOrderDto
 
 
     [ForeignKey("UserId")]
-    public required User? User { get; set; }
+    public required GetUserDto? User { get; set; }
     public DateTime DateTime { get; set; }
     public required string PhoneNumber { get; set; }
 
