@@ -41,6 +41,7 @@ public sealed class DishRepository : CrudRepository<Dish>, IDishRepository
         return orderBy switch
         {
             Constants.Constants.NameStringDish => isAscending ? query.OrderBy(m => m.Name) : query.OrderByDescending(m => m.Name),
+            Constants.Constants.CategoryStringDish => isAscending ? query.OrderBy(m => m.Category.Name) : query.OrderByDescending(m => m.Category.Name),
             Constants.Constants.CostStringDish => isAscending ? query.OrderBy(m => m.Cost) : query.OrderByDescending(m => m.Cost),
             Constants.Constants.DescriptionStringDish => isAscending ? query.OrderBy(m => m.Description) : query.OrderByDescending(m => m.Description),
             Constants.Constants.IdStringName => isAscending ? query.OrderBy(m => m.Id) : query.OrderByDescending(m => m.Id),

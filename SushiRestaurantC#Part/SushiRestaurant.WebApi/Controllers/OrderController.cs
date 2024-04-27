@@ -56,11 +56,9 @@ public class OrderController : Controller
         return Ok(_mapper.Map<GetOrderDto>(order));
     }
 
-    [HttpPost]
     [ValidationFilter]
     [ProducesResponseType(StatusCodes.Status201Created)]
     [ProducesResponseType(StatusCodes.Status400BadRequest)]
-
     [HttpPost("createOrder")]
     public async Task<IActionResult> Post([FromQuery] int? userId, [FromQuery] List<int> dishesId, [FromQuery] List<uint> dishesQuantity, [FromBody] CreateOrderDto dto, CancellationToken cancellationToken)
     {

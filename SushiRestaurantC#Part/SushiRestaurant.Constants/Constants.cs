@@ -24,6 +24,7 @@ static public class Constants
     public const string DescriptionStringDish = "Description";
     public const string ImageURLStringDish = "ImageURL";
     public const string CostStringDish = "Cost";
+    public const string CategoryStringDish = "Category";
 
     //User
     public const string UserNameStringUser = "UserName";
